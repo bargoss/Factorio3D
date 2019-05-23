@@ -16,17 +16,24 @@ public class Fabricator : TechnicalBlock
     float sinceLastCraft;
 
 
-    public Fabricator() : base()
+    public Fabricator(byte lookDirection) : base(lookDirection)
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];
 
-        updatesNeighbour = true;
+        updatesNeighbours = true;
+
+        this.lookDirection = lookDirection;
+        requestedNeighbours = new byte[1];
+        requestedNeighbours[0] = lookDirection;
     }
-    public override void UpdateNeighbour(float deltaTime, TechnicalBlock neighbour)
+    public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)
     {
-        TechnicalBlock target = neighbour;
-        TryTransferingOutputToNeighbour(target);
+        if (neighbours.Length > 0)
+        {
+            TechnicalBlock target = neighbours[0];
+            TryTransferingOutputToNeighbour(target);
+        }
     }
     public void SwitchRecipe(int recipeID, ItemsContainer items)
     {

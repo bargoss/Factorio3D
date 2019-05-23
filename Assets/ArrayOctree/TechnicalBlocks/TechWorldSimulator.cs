@@ -28,16 +28,22 @@ public class TechWorldSimulator
                         technicalBlock.Update(deltaTime);
                         if (technicalBlock.UpdatesNeighbour)
                         {
-                            byte targetDirection = technicalBlock.TargetNeighbour;
-                            Vector3Int delta = targetDirection.ToVector3Int();
                             Vector3Int myVoxelIndexInLayer = chunkIndex.Multiply(chunkSL) + indexInChunk;
-                            Vector3Int neighbourIndexInLayer = myVoxelIndexInLayer + delta;
-                            Block targetBlock = chunkLayer.GetVoxel(neighbourIndexInLayer);
-                            TechnicalBlock targetTechBlock = targetBlock.technicalBlock;
-                            if (targetTechBlock != null)
+                            System.Collections.Generic.List<TechnicalBlock> targetTechBlocks = new System.Collections.Generic.List<TechnicalBlock>();
+                            
+                            for (int i = 0; i < technicalBlock.requestedNeighbours.Length; i++)
                             {
-                                technicalBlock.UpdateNeighbour(deltaTime, targetTechBlock);
+                                byte targetDirection = technicalBlock.requestedNeighbours[i];
+                                Vector3Int delta = targetDirection.ToVector3Int();
+                                Vector3Int neighbourIndexInLayer = myVoxelIndexInLayer + delta;
+                                Block targetBlock = chunkLayer.GetVoxel(neighbourIndexInLayer);
+                                TechnicalBlock targetTechBlock = targetBlock.technicalBlock;
+                                if (targetTechBlock != null)
+                                {
+                                    targetTechBlocks[i] = targetTechBlock;
+                                }
                             }
+                            technicalBlock.UpdateNeighbour(deltaTime, targetTechBlocks.ToArray());
                         }
                     }
                 }

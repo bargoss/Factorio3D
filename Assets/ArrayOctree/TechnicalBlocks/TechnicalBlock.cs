@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class TechnicalBlock : IItemInput, IItemOutput
 {
-    protected bool updatesNeighbour; // pass in neighbours if true
+    protected bool updatesNeighbours; // pass in neighbours if true
     protected bool rendersItems;
     protected byte lookDirection = 255;
+    public byte[] requestedNeighbours;
 
-    public bool UpdatesNeighbour { get => updatesNeighbour; }
-    public byte TargetNeighbour { get => lookDirection; }
+    public bool UpdatesNeighbour { get => updatesNeighbours; }
+    public byte LookDirection { get => lookDirection; }
     public bool RendersItems { get => rendersItems; }
 
-    public TechnicalBlock()
+
+    public TechnicalBlock(byte lookDirection)
     {
-        updatesNeighbour = false;
+        updatesNeighbours = false;
         rendersItems = false;
+        this.lookDirection = lookDirection;
     }
 
     public virtual void Update(float deltaTime)
     {
 
     }
-    public virtual void UpdateNeighbour(float deltaTime, TechnicalBlock neighbour) // reuse neighbours array
+    public virtual void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours) // reuse neighbours array
     {
 
     }
@@ -30,16 +33,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
     {
         return null;
     }
-
-    public virtual void SetLookDirection(byte lookDirection)
-    {
-        this.lookDirection = lookDirection;
-    }
-    public virtual byte GetLookDirection()
-    {
-        return lookDirection;
-    }
-
+    
     public virtual bool CanTake(int itemID)
     {
         return false;

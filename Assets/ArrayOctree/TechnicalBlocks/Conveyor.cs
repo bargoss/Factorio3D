@@ -14,16 +14,20 @@ public class Conveyor : TechnicalBlock
 
     
 
-    public Conveyor() : base()
+    public Conveyor(byte lookDirection) : base(lookDirection)
     {
         sectionContains = new int[4];
         sectionMovement = new float[4];
         sectionInterval = 1.0f / sectionMovement.Length;
 
-        updatesNeighbour = true;
+        updatesNeighbours = true;
         rendersItems = true;
-
+        
         itemsMesh = new ItemMesh[4];
+
+        this.lookDirection = lookDirection;
+        requestedNeighbours = new byte[1];
+        requestedNeighbours[0] = lookDirection;
     }
     
 
@@ -52,10 +56,13 @@ public class Conveyor : TechnicalBlock
             else { itemsMesh[i].itemType = 0; }
         }
     }
-    public override void UpdateNeighbour(float deltaTime, TechnicalBlock neighbour)
+    public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)
     {
-        TechnicalBlock target = neighbour;
-        TryTransferingOutputToNeighbour(target);
+        if (neighbours.Length > 0)
+        {
+            TechnicalBlock target = neighbours[0];
+            TryTransferingOutputToNeighbour(target);
+        }
     }
     void TryTransferingOutputToNeighbour(TechnicalBlock target)
     {

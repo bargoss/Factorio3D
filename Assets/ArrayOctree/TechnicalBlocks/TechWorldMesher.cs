@@ -33,7 +33,7 @@ public class TechWorldMesher
                     TechnicalBlock technicalBlock = block.technicalBlock;
                     if(technicalBlock != null)
                     {
-                        Vector3 lookDirection = technicalBlock.GetLookDirection().ToVector3Int();
+                        Vector3 lookDirection = technicalBlock.LookDirection.ToVector3Int();
                         rotation = Quaternion.LookRotation(lookDirection);
                     }
                     Matrix4x4 transform = Matrix4x4.TRS(position, rotation, Vector3.one * chunkSettings.VoxelSize * 0.5f);

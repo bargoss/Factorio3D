@@ -55,12 +55,11 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.NonTechnical:
                 break;
             case Item.TechBlockType.Conveyor:
-                block.technicalBlock = new Conveyor(); // watch here
-                block.technicalBlock.SetLookDirection(lookDirection);
+                block.technicalBlock = new Conveyor(lookDirection); // watch here
+                //block.technicalBlock.SetLookDirection(lookDirection);
                 break;
             case Item.TechBlockType.Fabricator:
-                block.technicalBlock = new Fabricator();
-                block.technicalBlock.SetLookDirection(lookDirection);
+                block.technicalBlock = new Fabricator(lookDirection);
                 break;
         }
 
