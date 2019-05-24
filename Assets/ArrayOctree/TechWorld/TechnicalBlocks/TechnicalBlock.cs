@@ -59,5 +59,20 @@ public class TechnicalBlock : IItemInput, IItemOutput
         public Vector3 position;
         public int itemType;
     }
+
+    
+    public static void TryTransfer(TechnicalBlock source, TechnicalBlock destination)
+    {
+        int output = source.CanOutput();
+        if (output != 0)
+        {
+            if (destination != null && destination.CanTake(output))
+            {
+                source.Output();
+                destination.Take(output);
+            }
+        }
+    }
+
 }
 

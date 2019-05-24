@@ -8,9 +8,6 @@ public class Tests : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //print("size: " + CalculateWorldSize(256, 64, 256, 1) + "MBs");
-        //TestWorld();
-        //print(TestVoxel());
 
     }
 

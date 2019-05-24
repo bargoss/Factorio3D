@@ -61,9 +61,11 @@ public class Conveyor : TechnicalBlock
         if (neighbours.Length > 0)
         {
             TechnicalBlock target = neighbours[0];
-            TryTransferingOutputToNeighbour(target);
+            //TryTransferingOutputToNeighbour(target);
+            TryTransfer(this, target);
         }
     }
+    /*
     void TryTransferingOutputToNeighbour(TechnicalBlock target)
     {
         int output = CanOutput();
@@ -76,6 +78,7 @@ public class Conveyor : TechnicalBlock
             }
         }
     }
+    */
 
     void TransferUpdate(float deltaTime)
     {
@@ -163,17 +166,8 @@ public class Conveyor : TechnicalBlock
         sectionMovement[3] = 0;
         return toReturn;
     }
-
-    /*
-    public bool IsFull()
-    {
-        for(int i = 0; i < 4; i++)
-        {
-            if(itemTypes[i] == 0) 
-        }
-    }
-    */
 }
+
 
 /*
 Vector3Int DirectionToVec(byte direction)
