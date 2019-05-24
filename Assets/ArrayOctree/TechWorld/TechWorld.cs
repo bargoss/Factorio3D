@@ -61,6 +61,9 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.Fabricator:
                 block.technicalBlock = new Fabricator(lookDirection);
                 break;
+            case Item.TechBlockType.Inserter:
+                block.technicalBlock = new Inserter(lookDirection);
+                break;
         }
 
     }

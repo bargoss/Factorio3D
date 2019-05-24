@@ -20,21 +20,8 @@ public class Fabricator : TechnicalBlock
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];
-
-        updatesNeighbours = true;
-
-        this.lookDirection = lookDirection;
-        requestedNeighbours = new byte[1];
-        requestedNeighbours[0] = lookDirection;
     }
-    public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)
-    {
-        if (neighbours.Length > 0)
-        {
-            TechnicalBlock target = neighbours[0];
-            TryTransferingOutputToNeighbour(target);
-        }
-    }
+
     public void SwitchRecipe(int recipeID, ItemsContainer items)
     {
         this.recipeID = recipeID;
@@ -57,19 +44,7 @@ public class Fabricator : TechnicalBlock
             TryFabricate();
         }
     }
-    // no need for updating neighbours, conveyor does all the carrying around
-    void TryTransferingOutputToNeighbour(TechnicalBlock target)
-    {
-        int output = CanOutput();
-        if (output != 0)
-        {
-            if (target!= null && target.CanTake(output))
-            {
-                Output();
-                target.Take(output);
-            }
-        }
-    }
+
     void Fabricate(float overflow)
     {
         sinceLastCraft = overflow;

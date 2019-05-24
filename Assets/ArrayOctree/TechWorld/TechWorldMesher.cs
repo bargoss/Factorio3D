@@ -89,7 +89,7 @@ public class TechWorldMesher
 
 public class InstancedMeshInfo
 {
-    readonly static int typeCount = 6;
+    readonly static int typeCount = 7;
     public InstancedMeshInfoType[] types; // type 0 is air, always empty
     //public InstanceMeshInfoType[] itemTypes;// later
     public InstancedMeshInfo()

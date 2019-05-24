@@ -57,7 +57,7 @@ public class TechBlocksTests : MonoBehaviour
             fabricator.SwitchRecipe(1,techWorldMono.itemsContainer);
         }
         {
-            Block conveyorBlock = AddBlock(new Vector3(5.1f, 1.1f, 1.1f), 5, new Vector3Int(1, 0, 0).ToDirection());
+            Block conveyorBlock = AddBlock(new Vector3(5.1f, 1.1f, 1.1f), 6, new Vector3Int(1, 0, 0).ToDirection());
         }
         {
             Block conveyorBlock = AddBlock(new Vector3(6.1f, 1.1f, 1.1f), 5, new Vector3Int(0, 1, 0).ToDirection());
