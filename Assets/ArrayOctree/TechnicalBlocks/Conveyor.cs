@@ -69,7 +69,7 @@ public class Conveyor : TechnicalBlock
         int output = CanOutput();
         if (output != 0)
         {
-            if (target.CanTake(output))
+            if (target != null && target.CanTake(output))
             {
                 Output();
                 target.Take(output);

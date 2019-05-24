@@ -29,7 +29,7 @@ public class TechWorldSimulator
                         if (technicalBlock.UpdatesNeighbour)
                         {
                             Vector3Int myVoxelIndexInLayer = chunkIndex.Multiply(chunkSL) + indexInChunk;
-                            System.Collections.Generic.List<TechnicalBlock> targetTechBlocks = new System.Collections.Generic.List<TechnicalBlock>();
+                            TechnicalBlock[] targetTechBlocks = new TechnicalBlock[technicalBlock.requestedNeighbours.Length];
                             
                             for (int i = 0; i < technicalBlock.requestedNeighbours.Length; i++)
                             {
@@ -43,7 +43,7 @@ public class TechWorldSimulator
                                     targetTechBlocks[i] = targetTechBlock;
                                 }
                             }
-                            technicalBlock.UpdateNeighbour(deltaTime, targetTechBlocks.ToArray());
+                            technicalBlock.UpdateNeighbour(deltaTime, targetTechBlocks);
                         }
                     }
                 }
