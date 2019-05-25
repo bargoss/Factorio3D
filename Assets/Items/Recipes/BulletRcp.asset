@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8338d1e63ad9a4bbe5f686d9a733d8, type: 3}
   m_Name: BulletRcp
   m_EditorClassIdentifier: 
-  inputIDs: 02000000030000000000000000000000
+  inputIDs: 02000000010000000000000000000000
   outputID: 7
   inputAmounts: 04000000040000000000000000000000
   outputAmount: 1

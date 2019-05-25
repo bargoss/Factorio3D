@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830bb72bc81f3fe4bb54c63ec501ff93, type: 3}
   m_Name: Turret
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  canTakeIDs: 00000000
+  prefab: {fileID: 6927595935449280155, guid: b4624d4135c16b74c91f1ae53f923076, type: 3}
+  canTakeIDs: 07000000
   maxStorages: 10000000
