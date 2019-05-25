@@ -28,7 +28,22 @@ public class TechWorld // world + tech stuff
     }
     public void SetElement(Vector3 position, Block element, byte lookDirection = 0)
     {
-        InitializeElement(ref element, lookDirection);
+        // Call previous technicalBlock's OnDestroy
+        Block previousElement = GetElement(position);
+        if(previousElement.technicalBlock != null) { previousElement.technicalBlock.OnDestroy(); }
+
+        // Create the new element
+        InitializeTechBlock(ref element, lookDirection);
+        world.SetVoxel(position, element);
+    }
+    public void SetElement(Vector3 position, Block element, Quaternion rotation, TechnicalGoInfo technicalGoInfo)
+    {
+        // Call previous technicalBlock's OnDestroy
+        Block previousElement = GetElement(position);
+        if (previousElement.technicalBlock != null) { previousElement.technicalBlock.OnDestroy(); }
+
+        // Create the new element
+        InitializeGoConnection(ref element, position, rotation, technicalGoInfo);
         world.SetVoxel(position, element);
     }
     public void SimulateWorld(float deltaTime)
@@ -47,7 +62,13 @@ public class TechWorld // world + tech stuff
             }
         }
     }
-    void InitializeElement(ref Block block, byte lookDirection)
+
+    void InitializeGoConnection(ref Block block, Vector3 position, Quaternion rotation,TechnicalGoInfo technicalGoInfo)
+    {
+        position = position.ToVector3Int();
+        block.technicalBlock = new GoConnection(position,rotation,technicalGoInfo);
+    }
+    void InitializeTechBlock(ref Block block, byte lookDirection)
     {
         Item.TechBlockType techBlockType = items[block.blockType].techBlockType;
         switch (techBlockType)
@@ -59,7 +80,7 @@ public class TechWorld // world + tech stuff
                 //block.technicalBlock.SetLookDirection(lookDirection);
                 break;
             case Item.TechBlockType.Fabricator:
-                block.technicalBlock = new Fabricator(lookDirection);
+                block.technicalBlock = new Fabricator();
                 break;
             case Item.TechBlockType.Inserter:
                 block.technicalBlock = new Inserter(lookDirection);

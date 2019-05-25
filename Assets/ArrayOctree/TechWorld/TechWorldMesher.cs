@@ -31,6 +31,7 @@ public class TechWorldMesher
 
                     Quaternion rotation = Quaternion.identity;
                     TechnicalBlock technicalBlock = block.technicalBlock;
+                    if(technicalBlock is GoConnection) { continue; }
                     if(technicalBlock != null)
                     {
                         Vector3 lookDirection = technicalBlock.LookDirection.ToVector3Int();
@@ -89,7 +90,7 @@ public class TechWorldMesher
 
 public class InstancedMeshInfo
 {
-    readonly static int typeCount = 7;
+    readonly static int typeCount = 8;
     public InstancedMeshInfoType[] types; // type 0 is air, always empty
     //public InstanceMeshInfoType[] itemTypes;// later
     public InstancedMeshInfo()

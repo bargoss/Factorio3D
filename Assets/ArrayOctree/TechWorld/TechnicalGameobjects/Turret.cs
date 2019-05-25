@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Turret : MonoBehaviour
+public class Turret : TechnicalGo
 {
     // set in script
-    public GoConnection goInterface;
     Vector3 muzzleInitialLocalPos;
 
     // set these in editor on prefab
@@ -18,11 +17,6 @@ public class Turret : MonoBehaviour
 
     float lastShot;
 
-
-    public void Initialize(GoConnection goInterface)
-    {
-        this.goInterface = goInterface;
-    }
     private void Start()
     {
         lastShot = Time.time;
@@ -30,13 +24,11 @@ public class Turret : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) { StartShoot(Vector3.up + Vector3.forward); }
+        if (true) { TryShoot(Vector3.up + Vector3.forward); }
     }
     public bool CanShoot()
     {
-        return true;
-
-        if(goInterface.CanOutput() != 0 && Time.time > lastShot + coolDown)
+        if(goConnection.CanOutput() != 0 && Time.time > lastShot + coolDown)
         {
             return true;
         }
@@ -44,14 +36,16 @@ public class Turret : MonoBehaviour
     }
     void ConsumeAmmo()
     {
-        return;
-        goInterface.Output();
+        goConnection.Output();
     }
 
-    public void StartShoot(Vector3 targetDirection)
+    public void TryShoot(Vector3 targetDirection)
     {
-        //goInterface.Output();
-        StartCoroutine(AimAndShootCoroutine(targetDirection));
+        if (CanShoot())
+        {
+            goConnection.Output();
+            StartCoroutine(AimAndShootCoroutine(targetDirection));
+        }
     }
     void ShootProjectile()
     {

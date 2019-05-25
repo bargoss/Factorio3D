@@ -15,6 +15,7 @@ public class GoConnection : TechnicalBlock
     public void InitializeGameobject(Vector3 position, Quaternion rotation, GameObject prefab)
     {
         gameObject = GameObject.Instantiate(prefab, position, rotation);
+        gameObject.GetComponent<TechnicalGo>().Initialize(this);
     }
 
     public override void OnDestroy()

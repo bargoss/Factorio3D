@@ -16,7 +16,7 @@ public class Fabricator : TechnicalBlock
     float sinceLastCraft;
 
 
-    public Fabricator(byte lookDirection) : base(lookDirection)
+    public Fabricator() : base(0b010101)
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];

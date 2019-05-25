@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TechBlocksTests : MonoBehaviour
 {
+    public TechnicalGoInfo turretInfo;
+
     TechWorldMono techWorldMono;
     Conveyor spawner;
     // Start is called before the first frame update
@@ -21,7 +23,8 @@ public class TechBlocksTests : MonoBehaviour
             MeshItems();
             if (spawner.CanTake(1))
             {
-                spawner.Take(1);
+                if (Time.frameCount % 2 > 0) spawner.Take(1);
+                else { spawner.Take(2); }
             }
         }
     }
@@ -54,7 +57,7 @@ public class TechBlocksTests : MonoBehaviour
         {
             Block fabricatorBlock = AddBlock(new Vector3(4.1f, 1.1f, 1.1f), 4, new Vector3Int(1, 0, 0).ToDirection());
             Fabricator fabricator = (Fabricator)(fabricatorBlock.technicalBlock);
-            fabricator.SwitchRecipe(1,techWorldMono.itemsContainer);
+            fabricator.SwitchRecipe(2,techWorldMono.itemsContainer);
         }
         {
             Block conveyorBlock = AddBlock(new Vector3(5.1f, 1.1f, 1.1f), 6, new Vector3Int(1, 0, 0).ToDirection());
@@ -68,6 +71,12 @@ public class TechBlocksTests : MonoBehaviour
         {
             Block conveyorBlock = AddBlock(new Vector3(5.1f, 2.1f, 1.1f), 5, new Vector3Int(-1, 0, 0).ToDirection());
         }
+        {
+            Vector3 position = new Vector3(4.1f, 2.1f, 1.1f);
+            Block turretBlock = new Block();
+            turretBlock.blockType = 255;
+            techWorldMono.SetElement(position, turretBlock, Quaternion.identity, turretInfo);
+        }
         //Block fabricatorBlock = AddBlock(new Vector3(2.1f, 1.1f, 1.1f), 4, new Vector3Int(1, 0, 0).ToDirection());
         //Fabricator fabricator = (Fabricator)fabricatorBlock.technicalBlock;
         //fabricator.SwitchRecipe(1,techWorldMono.itemsContainer);
@@ -78,8 +87,8 @@ public class TechBlocksTests : MonoBehaviour
     {
         Block block = new Block();
         block.blockType = blockType;
-        techWorldMono.SetBlock(position, block, lookDirection);
-        return techWorldMono.GetBlock(position);
+        techWorldMono.SetElement(position, block, lookDirection);
+        return techWorldMono.GetElement(position);
     }
     void MeshWorld()
     {
