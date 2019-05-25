@@ -65,6 +65,5 @@ public class TechWorld // world + tech stuff
                 block.technicalBlock = new Inserter(lookDirection);
                 break;
         }
-
     }
 }

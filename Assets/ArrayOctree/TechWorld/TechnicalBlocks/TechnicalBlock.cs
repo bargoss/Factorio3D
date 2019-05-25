@@ -74,5 +74,9 @@ public class TechnicalBlock : IItemInput, IItemOutput
         }
     }
 
+    public virtual void OnDestroy() // call this before destroying the TechnicalBlock
+    {
+
+    }
 }
 
