@@ -60,10 +60,8 @@ public class TechWorldMesher
                 {
                     Vector3Int indexInChunk = new Vector3Int(x, y, z);
                     Vector3 position = new Vector3(x, y, z) * chunkSettings.VoxelSize + chunkStart;
-                    //Matrix4x4 transform = Matrix4x4.TRS(position, Quaternion.identity, Vector3.one * chunkSettings.VoxelSize);
                     Block block = chunk.GetVoxel(indexInChunk);
                     int blockType = block.blockType;
-                    //instancedMeshInfo.blockTypes[blockType].AddTransform(transform);
                     TechnicalBlock technicalBlock = block.technicalBlock;
                     if(technicalBlock != null)
                     {
@@ -74,7 +72,8 @@ public class TechWorldMesher
                             {
                                 if (itemMeshes[i].itemType != 0)
                                 {
-                                    Matrix4x4 transform = Matrix4x4.TRS(itemMeshes[i].position + position, Quaternion.identity, Vector3.one * 0.25f); ;
+                                    Matrix4x4 transform = itemMeshes[i].transform;
+                                    transform = Matrix4x4.Translate(position) * transform;
                                     instancedMeshInfo.AddInstance(transform, itemMeshes[i].itemType);
                                 }
                             }

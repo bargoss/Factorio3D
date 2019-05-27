@@ -56,7 +56,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
 
     public struct ItemMesh
     {
-        public Vector3 position;
+        public Matrix4x4 transform;
         public int itemType;
     }
 

@@ -51,7 +51,8 @@ public class Conveyor : TechnicalBlock
             if (sectionContains[i] != 0)
             {
                 itemsMesh[i].itemType = sectionContains[i];
-                itemsMesh[i].position = sectionStart + (i*sectionInterval + sectionMovement[i]) * lookDirectionVec;
+                Vector3 position = sectionStart + (i*sectionInterval + sectionMovement[i]) * lookDirectionVec;
+                itemsMesh[i].transform = Matrix4x4.TRS(position, Quaternion.identity, 0.25f * Vector3.one);
             }
             else { itemsMesh[i].itemType = 0; }
         }
