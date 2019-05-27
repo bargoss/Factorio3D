@@ -65,7 +65,7 @@ public class TechWorld // world + tech stuff
 
     void InitializeGoConnection(Vector3 position, ref Block block, Quaternion rotation, TechnicalGoInfo technicalGoInfo)
     {
-        block.technicalBlock = new GoConnection(position ,rotation,technicalGoInfo);
+        block.technicalBlock = new GoConnection(position.ToVector3Int() ,rotation,technicalGoInfo);
     }
     void InitializeTechBlock(ref Block block, Quaternion rotation)
     {
