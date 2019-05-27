@@ -6,7 +6,7 @@ public class GoConnection : TechnicalBlock
     public GameObject gameObject; // a two way connection
     public RestrictedStorage restrictedStorage;
 
-    public GoConnection(Vector3 position, Quaternion rotation, TechnicalGoInfo technicalGoInfo) : base(0b010101)
+    public GoConnection(Vector3 position, Quaternion rotation, TechnicalGoInfo technicalGoInfo) : base(0b010101, 0b011001)
     {
         restrictedStorage = new RestrictedStorage(technicalGoInfo.canTakeIDs, technicalGoInfo.maxStorages);
         InitializeGameobject(position, rotation, technicalGoInfo.prefab);

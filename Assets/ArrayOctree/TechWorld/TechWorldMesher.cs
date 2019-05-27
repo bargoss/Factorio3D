@@ -67,7 +67,7 @@ public class TechWorldMesher
                     {
                         if (technicalBlock.RendersItems)
                         {
-                            TechnicalBlock.ItemMesh[] itemMeshes = technicalBlock.GetItemsMesh(position);
+                            TechnicalBlock.ItemMesh[] itemMeshes = technicalBlock.GetItemsMesh();
                             for(int i = 0; i < itemMeshes.Length; i++)
                             {
                                 if (itemMeshes[i].itemType != 0)

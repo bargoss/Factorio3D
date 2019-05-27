@@ -14,7 +14,7 @@ public class Conveyor : TechnicalBlock
 
     
 
-    public Conveyor(byte lookDirection) : base(lookDirection)
+    public Conveyor(byte lookDirection, byte upDirection) : base(lookDirection, upDirection)
     {
         sectionContains = new int[4];
         sectionMovement = new float[4];
@@ -37,12 +37,12 @@ public class Conveyor : TechnicalBlock
         base.Update(deltaTime);
         TransferUpdate(deltaTime);
     }
-    public override ItemMesh[] GetItemsMesh(Vector3 myPos)
+    public override ItemMesh[] GetItemsMesh()
     {
-        UpdateItemsMesh(myPos);
+        UpdateItemsMesh();
         return itemsMesh;
     }
-    void UpdateItemsMesh(Vector3 myPos)
+    void UpdateItemsMesh()
     {
         Vector3 lookDirectionVec = (Vector3)(lookDirection.ToVector3Int());
         Vector3 sectionStart = -lookDirectionVec * 0.5f;

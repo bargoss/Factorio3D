@@ -33,7 +33,7 @@ public class TechWorld // world + tech stuff
         if(previousElement.technicalBlock != null) { previousElement.technicalBlock.OnDestroy(); }
 
         // Create the new element
-        InitializeTechBlock(ref element, lookDirection);
+        InitializeTechBlock(ref element, lookDirection, Vector3Int.up.ToDirection());
         world.SetVoxel(position, element);
     }
     public void SetElement(Vector3 position, Block element, Quaternion rotation, TechnicalGoInfo technicalGoInfo)
@@ -68,7 +68,7 @@ public class TechWorld // world + tech stuff
         position = position.ToVector3Int();
         block.technicalBlock = new GoConnection(position,rotation,technicalGoInfo);
     }
-    void InitializeTechBlock(ref Block block, byte lookDirection)
+    void InitializeTechBlock(ref Block block, byte lookDirection, byte upDirection)
     {
         Item.TechBlockType techBlockType = items[block.blockType].techBlockType;
         switch (techBlockType)
@@ -76,11 +76,10 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.NonTechnical:
                 break;
             case Item.TechBlockType.Conveyor:
-                block.technicalBlock = new Conveyor(lookDirection); // watch here
-                //block.technicalBlock.SetLookDirection(lookDirection);
+                block.technicalBlock = new Conveyor(lookDirection, upDirection);
                 break;
             case Item.TechBlockType.Fabricator:
-                block.technicalBlock = new Fabricator();
+                block.technicalBlock = new Assembler();
                 break;
             case Item.TechBlockType.Inserter:
                 block.technicalBlock = new Inserter(lookDirection);

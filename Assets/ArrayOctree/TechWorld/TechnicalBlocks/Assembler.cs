@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-
-public class Fabricator : TechnicalBlock
+public class Assembler : TechnicalBlock
 {
     int recipeID;
     Recipe recipe;
@@ -14,12 +14,18 @@ public class Fabricator : TechnicalBlock
     int outputAmount;
 
     float sinceLastCraft;
+    float gearRotation;
 
+    ItemMesh[] gearsMesh;
 
-    public Fabricator() : base(0b010101)
+    public Assembler() : base(0b010101, 0b011001)
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];
+
+        rendersItems = true;
+        gearsMesh = new ItemMesh[1];
+        InitializeAnimatedParts();
     }
 
     public void SwitchRecipe(int recipeID, ItemsContainer items)
@@ -40,11 +46,32 @@ public class Fabricator : TechnicalBlock
 
         if (recipeID != 0) // recipe is not null
         {
-            sinceLastCraft += deltaTime; // craft progress
-            TryFabricate();
+            if (GotEnoughMaterials())
+            {
+                sinceLastCraft += deltaTime;
+                Animate(deltaTime);
+                TryFabricate();
+            }
         }
     }
-
+    public override ItemMesh[] GetItemsMesh()
+    {
+        ItemMesh[] itemMesh = new ItemMesh[1];
+        itemMesh[0].itemType = gearsMesh[0].itemType;
+        itemMesh[0].transform = gearsMesh[0].transform;
+        itemMesh[0].transform = Matrix4x4.Rotate(Quaternion.Euler(0, gearRotation *220, 0)) * itemMesh[0].transform;
+        return itemMesh;
+    }
+    void InitializeAnimatedParts()
+    {
+        gearsMesh = new ItemMesh[1];
+        gearsMesh[0].itemType = 3;
+        gearsMesh[0].transform = Matrix4x4.TRS(Vector3.up * 0.5f, Quaternion.LookRotation(Vector3.up), 0.25f * Vector3.one);
+    }
+    void Animate(float deltaTime)
+    {
+        gearRotation += deltaTime;
+    }
     void Fabricate(float overflow)
     {
         sinceLastCraft = overflow;
@@ -84,6 +111,8 @@ public class Fabricator : TechnicalBlock
         }
         return true;
     }
+
+
 
     public override bool CanTake(int itemID)
     {

@@ -7,18 +7,21 @@ public class TechnicalBlock : IItemInput, IItemOutput
     protected bool updatesNeighbours; // pass in neighbours if true
     protected bool rendersItems;
     protected byte lookDirection = 255;
+    protected byte upDirection = 0b011001;
     public byte[] requestedNeighbours;
 
     public bool UpdatesNeighbour { get => updatesNeighbours; }
     public byte LookDirection { get => lookDirection; }
+    public byte UpDirection { get => upDirection; }
     public bool RendersItems { get => rendersItems; }
 
 
-    public TechnicalBlock(byte lookDirection)
+    public TechnicalBlock(byte lookDirection, byte upDirection)
     {
         updatesNeighbours = false;
         rendersItems = false;
         this.lookDirection = lookDirection;
+        this.upDirection = upDirection;
     }
 
     public virtual void Update(float deltaTime)
@@ -29,7 +32,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
     {
 
     }
-    public virtual ItemMesh[] GetItemsMesh(Vector3 myPos)
+    public virtual ItemMesh[] GetItemsMesh()
     {
         return null;
     }

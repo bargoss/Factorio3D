@@ -16,7 +16,7 @@ public class TechBlocksTests : MonoBehaviour
         //Invoke("TestStuff", 0.3f);
         Invoke("ConveyorTest", 0.1f);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if(Time.time > 0.31f)
         {
@@ -56,7 +56,7 @@ public class TechBlocksTests : MonoBehaviour
         }
         {
             Block fabricatorBlock = AddBlock(new Vector3(4.1f, 1.1f, 1.1f), 4, new Vector3Int(1, 0, 0).ToDirection());
-            Fabricator fabricator = (Fabricator)(fabricatorBlock.technicalBlock);
+            Assembler fabricator = (Assembler)(fabricatorBlock.technicalBlock);
             fabricator.SwitchRecipe(2,techWorldMono.itemsContainer);
         }
         {

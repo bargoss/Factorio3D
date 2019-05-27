@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Inserter : Conveyor
 {
-    public Inserter(byte lookDirection) : base(lookDirection)
+    public Inserter(byte lookDirection) : base(lookDirection, 0b011001)
     {
         requestedNeighbours = new byte[2];
         requestedNeighbours[0] = lookDirection;
