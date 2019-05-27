@@ -78,7 +78,7 @@ public class TechBlocksTests : MonoBehaviour
             Vector3 position = new Vector3(6.1f, 2.1f, 1.1f);
             Block turretBlock = new Block();
             turretBlock.blockType = 255;
-            techWorldMono.SetElement(position, turretBlock, Matrix4x4.TRS(position, Quaternion.identity, Vector3.one), turretInfo);
+            techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
         }
         /*
         {
@@ -104,7 +104,7 @@ public class TechBlocksTests : MonoBehaviour
     {
         Block block = new Block();
         block.blockType = blockType;
-        techWorldMono.SetElement(position, block, Matrix4x4.TRS(Vector3.zero, Quaternion.LookRotation(lookDirection), Vector3.one));
+        techWorldMono.SetElement(position, block, Quaternion.LookRotation(lookDirection));
         return techWorldMono.GetElement(position);
     }
     void MeshWorld()

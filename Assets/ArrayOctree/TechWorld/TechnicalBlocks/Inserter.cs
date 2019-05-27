@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Inserter : Conveyor
 {
-    public Inserter(Matrix4x4 transform) : base(transform)
+    public Inserter(Quaternion rotation) : base(rotation)
     {
         requestedNeighbours = new Vector3Int[2];
         Vector3Int forwardDir = ForwardDirection;

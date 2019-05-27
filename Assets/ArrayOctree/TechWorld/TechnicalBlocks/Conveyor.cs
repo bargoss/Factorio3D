@@ -14,7 +14,7 @@ public class Conveyor : TechnicalBlock
 
     
 
-    public Conveyor(Matrix4x4 transform) : base(transform)
+    public Conveyor(Quaternion rotation) : base(rotation)
     {
         sectionContains = new int[4];
         sectionMovement = new float[4];

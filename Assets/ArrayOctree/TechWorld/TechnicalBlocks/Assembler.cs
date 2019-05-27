@@ -18,7 +18,7 @@ public class Assembler : TechnicalBlock
 
     ItemMesh[] gearsMesh;
 
-    public Assembler() : base(Matrix4x4.identity)
+    public Assembler() : base(Quaternion.identity)
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];

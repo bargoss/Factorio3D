@@ -6,20 +6,20 @@ public class TechnicalBlock : IItemInput, IItemOutput
 {
     protected bool updatesNeighbours; // pass in neighbours if true
     protected bool rendersItems;
-    protected Matrix4x4 transform;
+    protected Matrix4x4 localTransform; // position is always 0,0,0
     public Vector3Int[] requestedNeighbours;
 
     public bool UpdatesNeighbour { get => updatesNeighbours; }
-    public Vector3Int ForwardDirection { get { return ((Vector3)transform.GetColumn(2)).ToVector3Int(); } }
-    public Vector3Int UpDirection { get { return ((Vector3)transform.GetColumn(0)).ToVector3Int(); } }
+    public Vector3Int ForwardDirection { get { return ((Vector3)localTransform.GetColumn(2)).ToVector3Int(); } }
+    public Vector3Int UpDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
     public bool RendersItems { get => rendersItems; }
 
 
-    public TechnicalBlock(Matrix4x4 transform)
+    public TechnicalBlock(Quaternion rotation)
     {
         updatesNeighbours = false;
         rendersItems = false;
-        this.transform = transform;
+        this.localTransform = Matrix4x4.Rotate(rotation);
     }
 
     public virtual void Update(float deltaTime)
