@@ -33,8 +33,7 @@ public class TechWorldSimulator
                             
                             for (int i = 0; i < technicalBlock.requestedNeighbours.Length; i++)
                             {
-                                byte targetDirection = technicalBlock.requestedNeighbours[i];
-                                Vector3Int delta = targetDirection.ToVector3Int();
+                                Vector3Int delta = technicalBlock.requestedNeighbours[i];
                                 Vector3Int neighbourIndexInLayer = myVoxelIndexInLayer + delta;
                                 Block targetBlock = chunkLayer.GetVoxel(neighbourIndexInLayer);
                                 TechnicalBlock targetTechBlock = targetBlock.technicalBlock;

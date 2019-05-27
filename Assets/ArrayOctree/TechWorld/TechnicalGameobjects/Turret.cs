@@ -24,7 +24,7 @@ public class Turret : TechnicalGo
     }
     private void Update()
     {
-        if (true) { TryShoot(Vector3.up + Vector3.forward); }
+        if (true && Input.GetKeyDown(KeyCode.Space)) { TryShoot(Vector3.up + Vector3.forward); }
     }
     public bool CanShoot()
     {
@@ -43,8 +43,9 @@ public class Turret : TechnicalGo
     {
         if (CanShoot())
         {
-            goConnection.Output();
+            //goConnection.Output();
             StartCoroutine(AimAndShootCoroutine(targetDirection));
+            lastShot = Time.time;
         }
     }
     void ShootProjectile()
@@ -71,7 +72,6 @@ public class Turret : TechnicalGo
         }
 
         // Shoot
-        lastShot = Time.time;
         ConsumeAmmo();
 
         // Recoil

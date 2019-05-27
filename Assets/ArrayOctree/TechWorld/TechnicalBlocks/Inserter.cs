@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Inserter : Conveyor
 {
-    public Inserter(byte lookDirection) : base(lookDirection, 0b011001)
+    public Inserter(Matrix4x4 transform) : base(transform)
     {
-        requestedNeighbours = new byte[2];
-        requestedNeighbours[0] = lookDirection;
-        Vector3Int lookVector = lookDirection.ToVector3Int();
-        Vector3Int invertedLookVector = lookVector.Multiply(-1);
-        requestedNeighbours[1] = invertedLookVector.ToDirection();
+        requestedNeighbours = new Vector3Int[2];
+        Vector3Int forwardDir = ForwardDirection;
+        requestedNeighbours[0] = forwardDir;
+        Vector3Int backDir = forwardDir.Multiply(-1);
+        requestedNeighbours[1] = backDir;
     }
     
     public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)

@@ -18,7 +18,7 @@ public class Assembler : TechnicalBlock
 
     ItemMesh[] gearsMesh;
 
-    public Assembler() : base(0b010101, 0b011001)
+    public Assembler() : base(Matrix4x4.identity)
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];
@@ -46,7 +46,7 @@ public class Assembler : TechnicalBlock
 
         if (recipeID != 0) // recipe is not null
         {
-            if (GotEnoughMaterials())
+            if (GotEnoughMaterials() && GotRoomForOutput())
             {
                 sinceLastCraft += deltaTime;
                 Animate(deltaTime);
@@ -61,6 +61,10 @@ public class Assembler : TechnicalBlock
         itemMesh[0].transform = gearsMesh[0].transform;
         itemMesh[0].transform = Matrix4x4.Rotate(Quaternion.Euler(0, gearRotation *220, 0)) * itemMesh[0].transform;
         return itemMesh;
+    }
+    bool GotRoomForOutput()
+    {
+        return (outputAmount < recipe.outputAmount * 2);
     }
     void InitializeAnimatedParts()
     {

@@ -14,7 +14,7 @@ public class Conveyor : TechnicalBlock
 
     
 
-    public Conveyor(byte lookDirection, byte upDirection) : base(lookDirection, upDirection)
+    public Conveyor(Matrix4x4 transform) : base(transform)
     {
         sectionContains = new int[4];
         sectionMovement = new float[4];
@@ -25,9 +25,8 @@ public class Conveyor : TechnicalBlock
         
         itemsMesh = new ItemMesh[4];
 
-        this.lookDirection = lookDirection;
-        requestedNeighbours = new byte[1];
-        requestedNeighbours[0] = lookDirection;
+        requestedNeighbours = new Vector3Int[1];
+        requestedNeighbours[0] = ForwardDirection;
     }
     
 
@@ -44,7 +43,7 @@ public class Conveyor : TechnicalBlock
     }
     void UpdateItemsMesh()
     {
-        Vector3 lookDirectionVec = (Vector3)(lookDirection.ToVector3Int());
+        Vector3 lookDirectionVec = (Vector3)(ForwardDirection);
         Vector3 sectionStart = -lookDirectionVec * 0.5f;
         for (int i = 0; i < 4; i++)
         {

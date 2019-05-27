@@ -6,22 +6,20 @@ public class TechnicalBlock : IItemInput, IItemOutput
 {
     protected bool updatesNeighbours; // pass in neighbours if true
     protected bool rendersItems;
-    protected byte lookDirection = 255;
-    protected byte upDirection = 0b011001;
-    public byte[] requestedNeighbours;
+    protected Matrix4x4 transform;
+    public Vector3Int[] requestedNeighbours;
 
     public bool UpdatesNeighbour { get => updatesNeighbours; }
-    public byte LookDirection { get => lookDirection; }
-    public byte UpDirection { get => upDirection; }
+    public Vector3Int ForwardDirection { get { return ((Vector3)transform.GetColumn(2)).ToVector3Int(); } }
+    public Vector3Int UpDirection { get { return ((Vector3)transform.GetColumn(0)).ToVector3Int(); } }
     public bool RendersItems { get => rendersItems; }
 
 
-    public TechnicalBlock(byte lookDirection, byte upDirection)
+    public TechnicalBlock(Matrix4x4 transform)
     {
         updatesNeighbours = false;
         rendersItems = false;
-        this.lookDirection = lookDirection;
-        this.upDirection = upDirection;
+        this.transform = transform;
     }
 
     public virtual void Update(float deltaTime)

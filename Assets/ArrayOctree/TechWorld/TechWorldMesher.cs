@@ -34,7 +34,7 @@ public class TechWorldMesher
                     if(technicalBlock is GoConnection) { continue; }
                     if(technicalBlock != null)
                     {
-                        Vector3 lookDirection = technicalBlock.LookDirection.ToVector3Int();
+                        Vector3 lookDirection = technicalBlock.ForwardDirection;
                         rotation = Quaternion.LookRotation(lookDirection);
                     }
                     Matrix4x4 transform = Matrix4x4.TRS(position, rotation, Vector3.one * chunkSettings.VoxelSize * 0.5f);

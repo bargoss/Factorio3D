@@ -26,25 +26,25 @@ public class TechWorld // world + tech stuff
     {
         return world.GetVoxel(position);
     }
-    public void SetElement(Vector3 position, Block element, byte lookDirection = 0)
+    public void SetElement(Vector3 position, Block element, Matrix4x4 transform)
     {
         // Call previous technicalBlock's OnDestroy
         Block previousElement = GetElement(position);
         if(previousElement.technicalBlock != null) { previousElement.technicalBlock.OnDestroy(); }
 
         // Create the new element
-        InitializeTechBlock(ref element, lookDirection, Vector3Int.up.ToDirection());
+        InitializeTechBlock(ref element, transform);
         world.SetVoxel(position, element);
     }
-    public void SetElement(Vector3 position, Block element, Quaternion rotation, TechnicalGoInfo technicalGoInfo)
+    public void SetElement(Matrix4x4 transform, Block element, TechnicalGoInfo technicalGoInfo)
     {
         // Call previous technicalBlock's OnDestroy
-        Block previousElement = GetElement(position);
+        Block previousElement = GetElement(transform.GetColumn(3));
         if (previousElement.technicalBlock != null) { previousElement.technicalBlock.OnDestroy(); }
 
         // Create the new element
-        InitializeGoConnection(ref element, position, rotation, technicalGoInfo);
-        world.SetVoxel(position, element);
+        InitializeGoConnection(ref element, transform, technicalGoInfo);
+        world.SetVoxel(transform.GetColumn(3), element);
     }
     public void SimulateWorld(float deltaTime)
     {
@@ -63,12 +63,11 @@ public class TechWorld // world + tech stuff
         }
     }
 
-    void InitializeGoConnection(ref Block block, Vector3 position, Quaternion rotation,TechnicalGoInfo technicalGoInfo)
+    void InitializeGoConnection(ref Block block, Matrix4x4 transform, TechnicalGoInfo technicalGoInfo)
     {
-        position = position.ToVector3Int();
-        block.technicalBlock = new GoConnection(position,rotation,technicalGoInfo);
+        block.technicalBlock = new GoConnection(transform,technicalGoInfo);
     }
-    void InitializeTechBlock(ref Block block, byte lookDirection, byte upDirection)
+    void InitializeTechBlock(ref Block block, Matrix4x4 transform)
     {
         Item.TechBlockType techBlockType = items[block.blockType].techBlockType;
         switch (techBlockType)
@@ -76,13 +75,13 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.NonTechnical:
                 break;
             case Item.TechBlockType.Conveyor:
-                block.technicalBlock = new Conveyor(lookDirection, upDirection);
+                block.technicalBlock = new Conveyor(transform);
                 break;
             case Item.TechBlockType.Fabricator:
                 block.technicalBlock = new Assembler();
                 break;
             case Item.TechBlockType.Inserter:
-                block.technicalBlock = new Inserter(lookDirection);
+                block.technicalBlock = new Inserter(transform);
                 break;
         }
     }

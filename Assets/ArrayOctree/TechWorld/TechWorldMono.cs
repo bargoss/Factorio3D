@@ -32,13 +32,13 @@ public class TechWorldMono : MonoBehaviour
         world.SimulateWorld(Time.fixedDeltaTime);
     }
 
-    public void SetElement(Vector3 position, Block block, byte lookDirection = 0) 
+    public void SetElement(Vector3 position, Block block, Matrix4x4 transform) 
     {
-        world.SetElement(position, block, lookDirection);
+        world.SetElement(position, block, transform);
     }
-    public void SetElement(Vector3 position, Block block, Quaternion rotation, TechnicalGoInfo technicalGoInfo)
+    public void SetElement(Vector3 position, Block block, Matrix4x4 transform, TechnicalGoInfo technicalGoInfo)
     {
-        world.SetElement(position, block, rotation, technicalGoInfo);
+        world.SetElement(transform, block, technicalGoInfo);
     }
     public Block GetElement(Vector3 position)
     {

@@ -6,15 +6,15 @@ public class GoConnection : TechnicalBlock
     public GameObject gameObject; // a two way connection
     public RestrictedStorage restrictedStorage;
 
-    public GoConnection(Vector3 position, Quaternion rotation, TechnicalGoInfo technicalGoInfo) : base(0b010101, 0b011001)
+    public GoConnection(Matrix4x4 transform, TechnicalGoInfo technicalGoInfo) : base(Matrix4x4.identity)
     {
         restrictedStorage = new RestrictedStorage(technicalGoInfo.canTakeIDs, technicalGoInfo.maxStorages);
-        InitializeGameobject(position, rotation, technicalGoInfo.prefab);
+        InitializeGameobject(transform, technicalGoInfo.prefab);
     }
 
-    public void InitializeGameobject(Vector3 position, Quaternion rotation, GameObject prefab)
+    public void InitializeGameobject(Matrix4x4 transform, GameObject prefab)
     {
-        gameObject = GameObject.Instantiate(prefab, position, rotation);
+        gameObject = GameObject.Instantiate(prefab, transform.GetColumn(3), transform.rotation);
         gameObject.GetComponent<TechnicalGo>().Initialize(this);
     }
 
