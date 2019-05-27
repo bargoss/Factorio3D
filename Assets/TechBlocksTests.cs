@@ -16,6 +16,7 @@ public class TechBlocksTests : MonoBehaviour
         //Invoke("TestStuff", 0.3f);
         Invoke("ConveyorTest", 0.1f);
     }
+    bool a = true;
     private void FixedUpdate()
     {
         if(Time.time > 0.31f)
@@ -23,8 +24,16 @@ public class TechBlocksTests : MonoBehaviour
             MeshItems();
             if (spawner.CanTake(1))
             {
-                if (Time.frameCount % 2 > 0) spawner.Take(1);
-                else { spawner.Take(2); }
+                if (a)
+                {
+                    spawner.Take(1);
+                    a = !a;
+                }
+                else
+                {
+                    spawner.Take(2);
+                    a = !a;
+                }
             }
         }
     }

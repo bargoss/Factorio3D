@@ -66,7 +66,7 @@ public class Assembler : TechnicalBlock
     {
         gearsMesh = new ItemMesh[1];
         gearsMesh[0].itemType = 3;
-        gearsMesh[0].transform = Matrix4x4.TRS(Vector3.up * 0.5f, Quaternion.LookRotation(Vector3.up), 0.25f * Vector3.one);
+        gearsMesh[0].transform = Matrix4x4.TRS(Vector3.up * 0.45f, Quaternion.LookRotation(Vector3.up), 0.45f * Vector3.one);
     }
     void Animate(float deltaTime)
     {
