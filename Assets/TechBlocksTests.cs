@@ -25,9 +25,8 @@ public class TechBlocksTests : MonoBehaviour
         if (Time.time > 0.31f)
         {
             MeshItems();
-            if (Time.frameCount % 30 == 0)
+            if (true)
             {
-                bool first = true;
                 foreach (Conveyor spawner in spawners)
                 {
                     if (spawner.CanTake(1))
@@ -42,9 +41,8 @@ public class TechBlocksTests : MonoBehaviour
                             spawner.Take(2);
                             //if (first) a = !a;
                         }
-                        first = false;
+                        a = !a;
                     }
-                    a = !a;
                 }
             }
         }
@@ -62,7 +60,10 @@ public class TechBlocksTests : MonoBehaviour
     */
     void ConveyorTests()
     {
-        for(float y = 1.1f; y < 5; y += 1)
+        ConveyorTest(1.1f, 1.1f, true);
+        return;
+
+        for (float y = 1.1f; y < 5; y += 1)
         for(float z = 1.1f; z < 60; z += 1)
         {
             ConveyorTest(z,y,false);
