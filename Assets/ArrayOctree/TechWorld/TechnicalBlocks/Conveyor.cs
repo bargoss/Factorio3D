@@ -44,7 +44,7 @@ public class Conveyor : TechnicalBlock
     void UpdateItemsMesh()
     {
         Vector3 lookDirectionVec = (Vector3)(ForwardDirection);
-        Vector3 sectionStart = -lookDirectionVec * 0.5f;
+        Vector3 sectionStart = -lookDirectionVec * 0.5f * 0;
         for (int i = 0; i < 4; i++)
         {
             if (sectionContains[i] != 0)
