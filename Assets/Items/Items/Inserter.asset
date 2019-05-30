@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemMesh: {fileID: 4300000, guid: 19fb11ae4fa3f914e974c1f76cd48bcf, type: 3}
   itemMaterial: {fileID: 2100000, guid: 61f124d1029610849a5571a7f9fea91d, type: 2}
-  blockMesh: {fileID: 4300000, guid: 19fb11ae4fa3f914e974c1f76cd48bcf, type: 3}
+  blockMesh: {fileID: 4300000, guid: 9072f7a1a1bf27745a8bb73b192bbf30, type: 3}
   blockMaterial: {fileID: 2100000, guid: 61f124d1029610849a5571a7f9fea91d, type: 2}
   techBlockType: 3

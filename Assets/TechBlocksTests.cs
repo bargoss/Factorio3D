@@ -105,6 +105,21 @@ public class TechBlocksTests : MonoBehaviour
                 techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
             }
         }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(7.1f, y, z), 6, new Vector3Int(1, 0, 0));
+        }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(8.1f, y, z), 5, new Vector3Int(0, 1, 0));
+        }
+        {
+            if (turret)
+            {
+                Vector3 position = new Vector3(8.1f, 1f + y, z);
+                Block turretBlock = new Block();
+                turretBlock.blockType = 255;
+                techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
+            }
+        }
         /*
         {
             Block conveyorBlock = AddBlock(new Vector3(6.1f, 2.1f, 1.1f), 5, new Vector3Int(-1, 0, 0));
