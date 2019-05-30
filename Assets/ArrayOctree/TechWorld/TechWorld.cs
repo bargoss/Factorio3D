@@ -83,6 +83,9 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.Inserter:
                 block.technicalBlock = new Inserter(rotation);
                 break;
+            case Item.TechBlockType.Splitter:
+                block.technicalBlock = new Splitter(rotation);
+                break;
         }
     }
 }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputIDs: 02000000010000000000000000000000
   outputID: 7
-  inputAmounts: 04000000040000000000000000000000
-  outputAmount: 1
+  inputAmounts: 01000000010000000000000000000000
+  outputAmount: 2
   craftDuration: 1

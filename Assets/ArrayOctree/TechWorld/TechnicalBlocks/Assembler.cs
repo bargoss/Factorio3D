@@ -118,7 +118,7 @@ public class Assembler : TechnicalBlock
 
 
 
-    public override bool CanTake(int itemID)
+    public override bool CanTake(int itemID, Vector3Int entryDirection)
     {
         for(int i = 0; i < 4; i++)
         {
@@ -129,7 +129,7 @@ public class Assembler : TechnicalBlock
         }
         return false;
     }
-    public override void Take(int itemID)
+    public override void Take(int itemID, Vector3Int entryDirection)
     {
         for (int i = 0; i < 4; i++)
         {

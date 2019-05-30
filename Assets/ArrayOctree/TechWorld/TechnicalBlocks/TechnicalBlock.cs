@@ -10,8 +10,10 @@ public class TechnicalBlock : IItemInput, IItemOutput
     public Vector3Int[] requestedNeighbours;
 
     public bool UpdatesNeighbour { get => updatesNeighbours; }
+
+    public Vector3Int RightDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
+    public Vector3Int UpDirection { get { return ((Vector3)localTransform.GetColumn(1)).ToVector3Int(); } }
     public Vector3Int ForwardDirection { get { return ((Vector3)localTransform.GetColumn(2)).ToVector3Int(); } }
-    public Vector3Int UpDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
     public bool RendersItems { get => rendersItems; }
 
 
@@ -35,12 +37,12 @@ public class TechnicalBlock : IItemInput, IItemOutput
         return null;
     }
     
-    public virtual bool CanTake(int itemID)
+    public virtual bool CanTake(int itemID, Vector3Int entryDirection)
     {
         return false;
     }
 
-    public virtual void Take(int item)
+    public virtual void Take(int item, Vector3Int entryDirection)
     {
         return;
     }
@@ -62,15 +64,15 @@ public class TechnicalBlock : IItemInput, IItemOutput
     }
 
     
-    public static void TryTransfer(TechnicalBlock source, TechnicalBlock destination)
+    public static void TryTransfer(TechnicalBlock source, TechnicalBlock destination, Vector3Int entryDirection)
     {
         int output = source.CanOutput();
         if (output != 0)
         {
-            if (destination != null && destination.CanTake(output))
+            if (destination != null && destination.CanTake(output, entryDirection))
             {
                 source.Output();
-                destination.Take(output);
+                destination.Take(output, entryDirection);
             }
         }
     }

@@ -29,16 +29,16 @@ public class TechBlocksTests : MonoBehaviour
             {
                 foreach (Conveyor spawner in spawners)
                 {
-                    if (spawner.CanTake(1))
+                    if (spawner.CanTake(1, Vector3Int.zero))
                     {
                         if (a)
                         {
-                            spawner.Take(1);
+                            spawner.Take(1, Vector3Int.zero);
                             //if (first) a = !a;
                         }
                         else
                         {
-                            spawner.Take(2);
+                            spawner.Take(2, Vector3Int.zero);
                             //if (first) a = !a;
                         }
                         a = !a;
@@ -76,7 +76,7 @@ public class TechBlocksTests : MonoBehaviour
         {
             Block conveyorBlock = AddBlock(new Vector3(1.1f, y, z), 5, new Vector3Int(1, 0, 0));
             Conveyor conveyor = (Conveyor)(conveyorBlock.technicalBlock);
-            conveyor.Take(1);
+            conveyor.Take(1, Vector3Int.zero);
             spawners.Add(conveyor);
         }
         {
@@ -94,19 +94,23 @@ public class TechBlocksTests : MonoBehaviour
             Block conveyorBlock = AddBlock(new Vector3(5.1f,y,z), 6, new Vector3Int(1, 0, 0));
         }
         {
-            Block conveyorBlock = AddBlock(new Vector3(6.1f,y, z), 5, new Vector3Int(0, 1, 0));
+            //Block conveyorBlock = AddBlock(new Vector3(6.1f,y, z), 5, new Vector3Int(0, 1, 0));
+            Block splitterBlock = AddBlock(new Vector3(6.1f, y, z), 8, new Vector3Int(1, 0, 0), new Vector3Int(0, 0, 1));
+        }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(6.1f, 1f + y, z), 5, new Vector3Int(0, 1, 0));
         }
         {
             if (turret)
             {
-                Vector3 position = new Vector3(6.1f, 1f + y, z);
+                Vector3 position = new Vector3(6.1f, 2f + y, z);
                 Block turretBlock = new Block();
                 turretBlock.blockType = 255;
                 techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
             }
         }
         {
-            Block conveyorBlock = AddBlock(new Vector3(7.1f, y, z), 6, new Vector3Int(1, 0, 0));
+            Block conveyorBlock = AddBlock(new Vector3(7.1f, y, z), 5, new Vector3Int(1, 0, 0));
         }
         {
             Block conveyorBlock = AddBlock(new Vector3(8.1f, y, z), 5, new Vector3Int(0, 1, 0));
@@ -140,9 +144,13 @@ public class TechBlocksTests : MonoBehaviour
     }
     Block AddBlock(Vector3 position, byte blockType, Vector3 lookDirection)
     {
+        return AddBlock(position, blockType, lookDirection, Vector3.up);
+    }
+    Block AddBlock(Vector3 position, byte blockType, Vector3 lookDirection, Vector3 upDirection)
+    {
         Block block = new Block();
         block.blockType = blockType;
-        techWorldMono.SetElement(position, block, Quaternion.LookRotation(lookDirection));
+        techWorldMono.SetElement(position, block, Quaternion.LookRotation(lookDirection, upDirection));
         return techWorldMono.GetElement(position);
     }
     void MeshWorld()

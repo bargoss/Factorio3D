@@ -34,8 +34,9 @@ public class TechWorldMesher
                     if(technicalBlock is GoConnection) { continue; }
                     if(technicalBlock != null)
                     {
-                        Vector3 lookDirection = technicalBlock.ForwardDirection;
-                        rotation = Quaternion.LookRotation(lookDirection);
+                        //Vector3 lookDirection = technicalBlock.ForwardDirection;
+                        //rotation = Quaternion.LookRotation(lookDirection);
+                        rotation = Quaternion.LookRotation(technicalBlock.ForwardDirection, technicalBlock.UpDirection);
                     }
                     Matrix4x4 transform = Matrix4x4.TRS(position, rotation, Vector3.one * chunkSettings.VoxelSize * 0.5f);
                     instancedMeshInfo.types[blockType].AddTransform(transform);
@@ -89,7 +90,7 @@ public class TechWorldMesher
 
 public class InstancedMeshInfo
 {
-    readonly static int typeCount = 8;
+    readonly static int typeCount = 9;
     public InstancedMeshInfoType[] types; // type 0 is air, always empty
     //public InstanceMeshInfoType[] itemTypes;// later
     public InstancedMeshInfo()

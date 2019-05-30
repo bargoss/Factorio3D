@@ -14,13 +14,17 @@ public class Conveyor : TechnicalBlock
 
     ItemMesh[] itemsMesh;
 
-    
+    /*
+    public Conveyor(Quaternion rotation) : this(rotation, 4)
+    {
 
+    }
+    */
     public Conveyor(Quaternion rotation, int sectionCount = 4) : base(rotation)
     {
         sectionContains = new int[sectionCount];
         sectionMovement = new float[sectionCount];
-        //sectionInterval = 1.0f / sectionMovement.Length;
+
         sectionInterval = 0.25f;
 
         updatesNeighbours = true;
@@ -35,6 +39,7 @@ public class Conveyor : TechnicalBlock
         sectionStart = Vector3.zero;
     }
     
+
 
     // on every update also handle transfering items
     public override void Update(float deltaTime)
@@ -67,7 +72,7 @@ public class Conveyor : TechnicalBlock
         if (neighbours.Length > 0)
         {
             TechnicalBlock target = neighbours[0];
-            TryTransfer(this, target);
+            TryTransfer(this, target, ForwardDirection);
         }
     }
 
@@ -127,7 +132,7 @@ public class Conveyor : TechnicalBlock
         return surplus > 0;
     }
 
-    public override bool CanTake(int itemID)
+    public override bool CanTake(int itemID, Vector3Int entryDirection)
     {
         if(sectionContains[0] == 0)
         {
@@ -135,7 +140,7 @@ public class Conveyor : TechnicalBlock
         }
         else { return false; }
     }
-    public override void Take(int item)
+    public override void Take(int item, Vector3Int entryDirection)
     {
         sectionContains[0] = item;
     }

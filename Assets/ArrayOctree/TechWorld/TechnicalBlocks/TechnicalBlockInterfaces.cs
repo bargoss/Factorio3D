@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IItemInput
 {
-    bool CanTake(int itemID);
-    void Take(int item);
+    bool CanTake(int itemID, Vector3Int entryDirection);
+    void Take(int item, Vector3Int entryDirection);
 }
 public interface IItemOutput
 {

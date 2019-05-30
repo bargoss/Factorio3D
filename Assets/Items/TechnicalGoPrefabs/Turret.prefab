@@ -77,9 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 6927595935449182909}
-  aimDelay: 0.5
-  recoilDelay: 1.5
-  coolDown: 2
+  aimDelay: 0.15
+  recoilDelay: 0.25
+  coolDown: 0.4
   projectilePrefab: {fileID: 0}
   projectileVelocity: 20
 --- !u!1 &6927595935449280157

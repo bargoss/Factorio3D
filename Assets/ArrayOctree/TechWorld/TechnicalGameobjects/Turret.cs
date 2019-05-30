@@ -24,7 +24,7 @@ public class Turret : TechnicalGo
     }
     private void Update()
     {
-        if (true && Input.GetKeyDown(KeyCode.Space)) { TryShoot(Vector3.up + Vector3.forward); }
+        if (true && Input.GetKey(KeyCode.Space)) { TryShoot(Vector3.up + Vector3.forward); }
     }
     public bool CanShoot()
     {

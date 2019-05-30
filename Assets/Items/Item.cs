@@ -19,6 +19,7 @@ public class Item : ScriptableObject
         NonTechnical,
         Conveyor,
         Fabricator,
-        Inserter
+        Inserter,
+        Splitter
     };
 }

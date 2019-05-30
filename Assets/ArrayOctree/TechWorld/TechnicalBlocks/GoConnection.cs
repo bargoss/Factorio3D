@@ -30,9 +30,9 @@ public class GoConnection : TechnicalBlock
         return restrictedStorage.CanOutput();
     }
 
-    public override bool CanTake(int itemID)
+    public override bool CanTake(int itemID, Vector3Int entryDirection)
     {
-        return restrictedStorage.CanTake(itemID);
+        return restrictedStorage.CanTake(itemID, entryDirection);
     }
 
     public override int Output()
@@ -40,8 +40,8 @@ public class GoConnection : TechnicalBlock
         return restrictedStorage.Output();
     }
 
-    public override void Take(int itemID)
+    public override void Take(int itemID, Vector3Int entryDirection)
     {
-        restrictedStorage.Take(itemID);
+        restrictedStorage.Take(itemID, entryDirection);
     }
 }

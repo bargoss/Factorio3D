@@ -16,7 +16,7 @@ public class Inserter : Conveyor
     
     public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)
     {
-        TryTransfer(neighbours[1], this);
+        TryTransfer(neighbours[1], this, ForwardDirection);
         base.UpdateNeighbour(deltaTime, neighbours);
     }
 }

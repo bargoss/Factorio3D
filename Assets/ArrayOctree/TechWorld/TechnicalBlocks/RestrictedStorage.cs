@@ -41,7 +41,7 @@ public class RestrictedStorage : IItemInput, IItemOutput
         return 0;
     }
 
-    public bool CanTake(int itemID)
+    public bool CanTake(int itemID, Vector3Int entryDirection)
     {
         int stackToInsert = FindStackForInput(itemID);
         if(stackToInsert != -1)
@@ -65,7 +65,7 @@ public class RestrictedStorage : IItemInput, IItemOutput
         return 0;
     }
 
-    public void Take(int itemID)
+    public void Take(int itemID, Vector3Int entryDirection)
     {
         int stackToInsert = FindStackForInput(itemID);
         if (stackToInsert != -1)
