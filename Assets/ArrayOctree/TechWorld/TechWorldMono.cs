@@ -15,7 +15,7 @@ public class TechWorldMono : MonoBehaviour
     public void Start()
     {
         chunkSettings = new ChunkSettings(16, 1);
-        world = new TechWorld(itemsContainer, chunkSettings, new Vector3Int(32, 16, 32));
+        world = new TechWorld(itemsContainer, chunkSettings, new Vector3Int(64, 16, 64));
         chunkSettings = world.chunkSettings;
 
         chunkMesher = new TechWorldMesher(chunkSettings);
