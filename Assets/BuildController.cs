@@ -29,6 +29,14 @@ public class BuildController : MonoBehaviour
             if (selectedBlockType != null) { SetBlock(mousePosition, Quaternion.LookRotation(Vector3.forward, Vector3.up), selectedBlockType); }
             //Utility.DrawPoint(mousePosition, Color.red, 0.2f);
         }
+
+
+        CameraMovement();
+    }
+    void CameraMovement()
+    {
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        camera.transform.position += movement * Time.deltaTime * 60 * 0.4f;
     }
 
     public void SetBlock(Vector3 position, Quaternion rotation, int blockType)
