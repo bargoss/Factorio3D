@@ -138,6 +138,25 @@ public static class Utility
         return direction;
     }
 
+    public static Vector3 GetMousePosInWorldSpace(Plane plane, Camera camera)
+    {
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
+        float enter = 0;
+        plane.Raycast(ray, out enter);
+
+        Vector3 contactPoint = ray.origin + ray.direction * enter;
+        return contactPoint;
+    }
+
+    public static void DrawPoint(Vector3 position, Color color, float duration)
+    {
+        Debug.DrawRay(position, Vector3.up, color, duration);
+        Debug.DrawRay(position, Vector3.down, color, duration);
+        Debug.DrawRay(position, Vector3.right, color, duration);
+        Debug.DrawRay(position, Vector3.left, color, duration);
+        Debug.DrawRay(position, Vector3.forward, color, duration);
+        Debug.DrawRay(position, Vector3.back, color, duration);
+    }
 }
 

@@ -49,7 +49,6 @@ public class World<T>
     public void SetVoxel(Vector3 position, T voxel)
     {
         Vector3Int voxelIndexInLayer = GetIndexInLayer(position, mainLayer);
-        Debug.Log("voxelIndexInLayer: " + voxelIndexInLayer);
         mainLayer.SetVoxel(voxelIndexInLayer, voxel);
     }
 

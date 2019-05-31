@@ -25,6 +25,7 @@ public class TechWorldMono : MonoBehaviour
     }
     public void Update()
     {
+        MeshAllChunks_Items();
         DrawMeshInfos();
     }
     public void FixedUpdate()
@@ -35,10 +36,12 @@ public class TechWorldMono : MonoBehaviour
     public void SetElement(Vector3 position, Block block, Quaternion rotation) 
     {
         world.SetElement(position, block, rotation);
+        MeshAllChunks_Blocks();
     }
     public void SetElement(Vector3 position, Quaternion rotation, Block block, TechnicalGoInfo technicalGoInfo)
     {
         world.SetElement(position, rotation ,block, technicalGoInfo);
+        MeshAllChunks_Blocks();
     }
     public Block GetElement(Vector3 position)
     {
