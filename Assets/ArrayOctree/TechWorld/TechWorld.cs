@@ -67,6 +67,8 @@ public class TechWorld // world + tech stuff
     {
         block.technicalBlock = new GoConnection(position.ToVector3Int() ,rotation,technicalGoInfo);
     }
+
+
     void InitializeTechBlock(ref Block block, Quaternion rotation)
     {
         Item.TechBlockType techBlockType = items[block.blockType].techBlockType;
@@ -77,7 +79,7 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.Conveyor:
                 block.technicalBlock = new Conveyor(rotation);
                 break;
-            case Item.TechBlockType.Fabricator:
+            case Item.TechBlockType.Assembler:
                 block.technicalBlock = new Assembler();
                 break;
             case Item.TechBlockType.Inserter:
