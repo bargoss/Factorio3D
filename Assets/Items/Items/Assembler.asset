@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1047e87ea230fcd4393661d75d929349, type: 3}
-  m_Name: Fabricator
+  m_Name: Assembler
   m_EditorClassIdentifier: 
   itemMesh: {fileID: 0}
   itemMaterial: {fileID: 0}

@@ -16,3 +16,4 @@ MonoBehaviour:
   itemMaterial: {fileID: 2100000, guid: 6a76088c28322bd478aa34ded7cffca7, type: 2}
   blockMesh: {fileID: 0}
   blockMaterial: {fileID: 0}
+  techBlockType: 0
