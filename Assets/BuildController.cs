@@ -26,10 +26,8 @@ public class BuildController : MonoBehaviour
             Vector3 mousePosition = Utility.GetMousePosInWorldSpace(gamePlane, camera);
             mousePosition += Vector3.one * 0.5f;
             print("put block: " + selectedBlockType + ", at: " + mousePosition);
-            if (selectedBlockType != null) { SetBlock(mousePosition, Quaternion.LookRotation(Vector3.forward, Vector3.up), selectedBlockType); }
-            //Utility.DrawPoint(mousePosition, Color.red, 0.2f);
+            SetBlock(mousePosition, Quaternion.LookRotation(Vector3.forward, Vector3.up), selectedBlockType);
         }
-
 
         CameraMovement();
     }
