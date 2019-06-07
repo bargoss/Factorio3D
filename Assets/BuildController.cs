@@ -1,21 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+
+public class FloatEvent : UnityEvent<float> { }
 
 public class BuildController : MonoBehaviour
 {
     public Camera camera;
     public ItemsContainer itemsContainer;
     public TechWorldMono techWorldMono;
+    public ContentListControl blocksList;
 
     int selectedBlockType;
     Plane gamePlane;
+
+    public FloatEvent selectBlockTypeEvent = new FloatEvent();
 
     // Start is called before the first frame update
     void Start()
     {
         selectedBlockType = 5;
         gamePlane = new Plane(Vector3.up, Vector3.up);
+
+        PopulateList();
     }
 
     // Update is called once per frame
@@ -31,6 +40,29 @@ public class BuildController : MonoBehaviour
 
         CameraMovement();
     }
+
+    void PopulateList()
+    {
+        blocksList.ResetList();
+        for (int i = 0; i < itemsContainer.items.Length; i++)
+        {
+            int aasdas = i;
+            Item item = itemsContainer.items[i];
+            if (item != null && item.blockMesh != null)
+            {
+                GameObject content = blocksList.CreateContent();
+                content.GetComponentInChildren<Button>().onClick.AddListener(delegate { SelectBlockType(i); });
+                Text text = content.GetComponentInChildren<Text>();
+                text.text = item.itemName + ", " + i;
+            }
+        }
+    }
+
+    public void SelectBlockType(int blockType)
+    {
+        selectedBlockType = blockType;
+    }
+
     void CameraMovement()
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -47,11 +79,5 @@ public class BuildController : MonoBehaviour
         Block block = new Block();
         block.blockType = (byte)blockType;
         return block;
-    }
-
-
-    public void SelectBlock(int selectedBlockType)
-    {
-        this.selectedBlockType = selectedBlockType;
     }
 }

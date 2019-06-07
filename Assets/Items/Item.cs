@@ -6,6 +6,8 @@ using System;
 [CreateAssetMenu(fileName = "Item", menuName = "Item")]
 public class Item : ScriptableObject
 {
+    public string itemName;
+
     public Mesh itemMesh;
     public Material itemMaterial;
 
