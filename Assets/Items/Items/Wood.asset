@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1047e87ea230fcd4393661d75d929349, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
+  itemName: Wood
   itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   itemMaterial: {fileID: 2100000, guid: bbed64fc147b99146be8a86b30231e8a, type: 2}
   blockMesh: {fileID: 0}

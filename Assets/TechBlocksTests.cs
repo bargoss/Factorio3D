@@ -60,13 +60,44 @@ public class TechBlocksTests : MonoBehaviour
     */
     void ConveyorTests()
     {
-        ConveyorTest(1.1f, 1.1f, true);
+        SplittingTest();
+        //ConveyorTest(1.1f, 1.1f, true);
         return;
 
         for (float y = 1.1f; y < 5; y += 1)
         for(float z = 1.1f; z < 60; z += 1)
         {
             ConveyorTest(z,y,false);
+        }
+    }
+    void SplittingTest()
+    {
+        {
+            Block conveyorBlock = AddBlock(new Vector3(1.1f, 1.1f, 1.1f), 5, new Vector3Int(1, 0, 0));
+            Conveyor conveyor = (Conveyor)(conveyorBlock.technicalBlock);
+            conveyor.Take(1, Vector3Int.zero);
+            spawners.Add(conveyor);
+        }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(2.1f, 1.1f, 1.1f), 5, new Vector3Int(1, 0, 0));
+        }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(3.1f, 1.1f, 1.1f), 5, new Vector3Int(1, 0, 0));
+        }
+        {
+            Block fabricatorBlock = AddBlock(new Vector3(4.1f, 1.1f, 1.1f), 4, new Vector3Int(1, 0, 0));
+            Assembler fabricator = (Assembler)(fabricatorBlock.technicalBlock);
+            fabricator.SwitchRecipe(2, techWorldMono.itemsContainer);
+        }
+        {
+            Block inserterBlock = AddBlock(new Vector3(5.1f, 1.1f, 1.1f), 6, new Vector3Int(1, 0, 0));
+        }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(6.1f, 1.1f, 1.1f), 5, new Vector3Int(0, 1, 0));
+            Block conveyorBlock2 = AddBlock(new Vector3(6.1f, 2.1f, 1.1f), 5, new Vector3Int(0, 1, 0));
+        }
+        {
+            Block conveyorBlock = AddBlock(new Vector3(7.1f, 1.1f, 1.1f), 6, new Vector3Int(1, 0, 0));
         }
     }
     void ConveyorTest(float z, float y, bool turret)

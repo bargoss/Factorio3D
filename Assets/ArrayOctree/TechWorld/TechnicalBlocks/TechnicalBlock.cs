@@ -66,13 +66,16 @@ public class TechnicalBlock : IItemInput, IItemOutput
     
     public static void TryTransfer(TechnicalBlock source, TechnicalBlock destination, Vector3Int entryDirection)
     {
-        int output = source.CanOutput();
-        if (output != 0)
+        if (source != null && destination != null)
         {
-            if (destination != null && destination.CanTake(output, entryDirection))
+            int output = source.CanOutput();
+            if (output != 0)
             {
-                source.Output();
-                destination.Take(output, entryDirection);
+                if (destination != null && destination.CanTake(output, entryDirection))
+                {
+                    source.Output();
+                    destination.Take(output, entryDirection);
+                }
             }
         }
     }
