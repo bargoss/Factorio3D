@@ -47,12 +47,12 @@ public class TechnicalBlock : IItemInput, IItemOutput
         return;
     }
 
-    public virtual int CanOutput()
+    public virtual int CanOutput(Vector3Int exitDirection)
     {
         return 0;
     }
 
-    public virtual int Output()
+    public virtual int Output(Vector3Int exitDirection)
     {
         return 0;
     }
@@ -68,12 +68,12 @@ public class TechnicalBlock : IItemInput, IItemOutput
     {
         if (source != null && destination != null)
         {
-            int output = source.CanOutput();
+            int output = source.CanOutput(entryDirection);
             if (output != 0)
             {
                 if (destination != null && destination.CanTake(output, entryDirection))
                 {
-                    source.Output();
+                    source.Output(entryDirection);
                     destination.Take(output, entryDirection);
                 }
             }

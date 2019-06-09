@@ -10,6 +10,7 @@ public class Conveyor : TechnicalBlock
     float transferSpeed = 1;
     float sectionInterval;
     int lastSection;
+    protected int midSection = 0;
     protected Vector3 sectionStart;
 
     ItemMesh[] itemsMesh;
@@ -134,7 +135,7 @@ public class Conveyor : TechnicalBlock
 
     public override bool CanTake(int itemID, Vector3Int entryDirection)
     {
-        if(sectionContains[0] == 0)
+        if(sectionContains[midSection] == 0)
         {
             return true;
         }
@@ -142,9 +143,31 @@ public class Conveyor : TechnicalBlock
     }
     public override void Take(int item, Vector3Int entryDirection)
     {
-        sectionContains[0] = item;
+        sectionContains[midSection] = item;
     }
-    public override int CanOutput()
+    public override int CanOutput(Vector3Int exitDirection)
+    {
+        if(ForwardDirection == exitDirection) {
+            return CanRegularOutput();
+        }
+        else
+        {
+            return CanMidOutput();
+        }
+    }
+    public override int Output(Vector3Int exitDirection)
+    {
+        if (ForwardDirection == exitDirection)
+        {
+            return RegularOutput();
+        }
+        else
+        {
+            return MidOutput();
+        }
+    }
+
+    int CanRegularOutput()
     {
         if (sectionMovement[lastSection] >= sectionInterval)
         {
@@ -155,11 +178,30 @@ public class Conveyor : TechnicalBlock
             return 0;
         }
     }
-    public override int Output()
+
+    int RegularOutput()
     {
         int toReturn = sectionContains[lastSection];
         sectionContains[lastSection] = 0;
         sectionMovement[lastSection] = 0;
+        return toReturn;
+    }
+    int CanMidOutput()
+    {
+        if (sectionMovement[midSection] >= sectionInterval)
+        {
+            return sectionContains[midSection];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    int MidOutput()
+    {
+        int toReturn = sectionContains[midSection];
+        sectionContains[midSection] = 0;
+        sectionMovement[midSection] = 0;
         return toReturn;
     }
 }

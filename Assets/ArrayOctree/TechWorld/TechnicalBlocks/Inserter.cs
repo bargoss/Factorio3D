@@ -20,21 +20,3 @@ public class Inserter : Conveyor
         base.UpdateNeighbour(deltaTime, neighbours);
     }
 }
-/*
-public class A
-{
-    public int myValue;
-
-    public A(int a)
-    {
-        myValue = 1;
-    }
-}
-public class B : A
-{
-    public B(int a) : base(a)
-    {
-        //myValue = 2;
-    }
-}
-*/
