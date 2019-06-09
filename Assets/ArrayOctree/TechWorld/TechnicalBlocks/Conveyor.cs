@@ -19,12 +19,8 @@ public class Conveyor : TechnicalBlock
 
     ItemMesh[] itemsMesh;
 
-    /*
-    public Conveyor(Quaternion rotation) : this(rotation, 4)
-    {
 
-    }
-    */
+
     public Conveyor(Quaternion rotation, int sectionCount = 4) : base(rotation)
     {
         sectionContains = new int[sectionCount];
@@ -80,7 +76,10 @@ public class Conveyor : TechnicalBlock
             TryTransfer(this, target, ForwardDirection);
         }
     }
-
+    public override void PostUpdate()
+    {
+        base.PostUpdate();
+    }
 
     void TransferUpdate(float deltaTime)
     {
