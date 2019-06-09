@@ -13,6 +13,10 @@ public class Conveyor : TechnicalBlock
     protected int midSection = 0;
     protected Vector3 sectionStart;
 
+    // true: main direction io prioritized, false: alternative direction is prioritized
+    protected bool inputPriority = true;
+    protected bool outputPriority = true;
+
     ItemMesh[] itemsMesh;
 
     /*
@@ -143,6 +147,7 @@ public class Conveyor : TechnicalBlock
     }
     public override void Take(int item, Vector3Int entryDirection)
     {
+        inputPriority = !inputPriority;
         sectionContains[midSection] = item;
     }
     public override int CanOutput(Vector3Int exitDirection)
@@ -157,6 +162,7 @@ public class Conveyor : TechnicalBlock
     }
     public override int Output(Vector3Int exitDirection)
     {
+        outputPriority = !outputPriority;
         if (ForwardDirection == exitDirection)
         {
             return RegularOutput();
@@ -178,7 +184,6 @@ public class Conveyor : TechnicalBlock
             return 0;
         }
     }
-
     int RegularOutput()
     {
         int toReturn = sectionContains[lastSection];
