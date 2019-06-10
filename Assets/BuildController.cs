@@ -48,7 +48,7 @@ public class BuildController : MonoBehaviour
     {
         Vector3 mousePosition = Utility.GetMousePosInWorldSpace(gamePlane, camera);
         Vector3 mousePositionActual = mousePosition + Vector3.one * 0.5f;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             print("put block: " + selectedBlockType + ", at: " + mousePositionActual);
             SetBlock(mousePositionActual, TargetRotation, selectedBlockType);

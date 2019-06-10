@@ -76,10 +76,6 @@ public class Conveyor : TechnicalBlock
             TryTransfer(this, target, ForwardDirection);
         }
     }
-    public override void PostUpdate()
-    {
-        base.PostUpdate();
-    }
 
     void TransferUpdate(float deltaTime)
     {

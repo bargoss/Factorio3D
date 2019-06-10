@@ -32,10 +32,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
     {
 
     }
-    public virtual void PostUpdate()
-    {
-
-    }
+    
     public virtual ItemMesh[] GetItemsMesh()
     {
         return null;

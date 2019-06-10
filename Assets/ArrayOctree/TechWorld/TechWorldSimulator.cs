@@ -3,6 +3,38 @@ using System.Collections;
 
 public class TechWorldSimulator
 {
+    static readonly byte[] iterationOrders=
+    {
+            0b000,
+            0b001,
+            0b010,
+            0b011,
+
+            0b100,
+            0b101,
+            0b110,
+            0b111
+    };
+    int iterationOrdersIndex = 0;
+
+    byte IterationOrder
+    {
+        get { return iterationOrders[iterationOrdersIndex]; }
+    }
+
+    bool XSign
+    {
+        get { return (IterationOrder & 0b001) == 0b001; }
+    }
+    bool YSign
+    {
+        get { return (IterationOrder & 0b010) == 0b010; }
+    }
+    bool ZSign
+    {
+        get { return (IterationOrder & 0b100) == 0b100; }
+    }
+
     ChunkSettings chunkSettings;
     public TechWorldSimulator(ChunkSettings chunkSettings)
     {
@@ -16,16 +48,27 @@ public class TechWorldSimulator
         // iterate all blocks (for now)
         for(int x = 0; x < chunkSettings.ChunkSL; x++)
         {
+            if (XSign)
+            {
+                x = chunkSettings.ChunkSL - x - 1;
+            }
             for (int y = 0; y < chunkSettings.ChunkSL; y++)
             {
+                if (YSign)
+                {
+                    y = chunkSettings.ChunkSL - y - 1;
+                }
                 for (int z = 0; z < chunkSettings.ChunkSL; z++)
                 {
+                    if (ZSign)
+                    {
+                        z = chunkSettings.ChunkSL - z - 1;
+                    }
                     Vector3Int indexInChunk = new Vector3Int(x, y, z);
                     Block block = chunk.GetVoxel(indexInChunk);
                     TechnicalBlock technicalBlock = block.technicalBlock;
                     if(technicalBlock != null)
                     {
-                        technicalBlock.Update(deltaTime);
                         if (technicalBlock.UpdatesNeighbour)
                         {
                             Vector3Int myVoxelIndexInLayer = chunkIndex.Multiply(chunkSL) + indexInChunk;
@@ -44,10 +87,17 @@ public class TechWorldSimulator
                             }
                             technicalBlock.UpdateNeighbour(deltaTime, targetTechBlocks);
                         }
+                        technicalBlock.Update(deltaTime);
                     }
                 }
             }
         }
+        ChangeIterationOrder();
+    }
+    void ChangeIterationOrder()
+    {
+        iterationOrdersIndex += 1;
+        iterationOrdersIndex = iterationOrdersIndex & 8;
     }
 }
 /*
