@@ -31,7 +31,7 @@ public class RestrictedStorage : IItemInput, IItemOutput
         }
     }
 
-    public int CanOutput()
+    public int CanOutput(Vector3Int exitDirection)
     {
         int stackToOutput = FindStackForOutput();
         if (stackToOutput != -1)
@@ -54,7 +54,7 @@ public class RestrictedStorage : IItemInput, IItemOutput
         }
     }
 
-    public int Output()
+    public int Output(Vector3Int exitDirection)
     {
         int stackToOutput = FindStackForOutput();
         if(stackToOutput != -1)

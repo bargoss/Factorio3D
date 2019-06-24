@@ -9,6 +9,6 @@ public interface IItemInput
 }
 public interface IItemOutput
 {
-    int CanOutput();
-    int Output();
+    int CanOutput(Vector3Int exitDirection);
+    int Output(Vector3Int exitDirection);
 }

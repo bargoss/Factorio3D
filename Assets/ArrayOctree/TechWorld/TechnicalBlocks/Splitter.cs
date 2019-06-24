@@ -73,12 +73,12 @@ public class Splitter : TechnicalBlock
         }
     }
 
-    public override int CanOutput()
+    public override int CanOutput(Vector3Int exitDirection)
     {
         // do stuff here
         return 0;
     }
-    public override int Output()
+    public override int Output(Vector3Int exitDirection)
     {
         // do stuff here
         return 0;

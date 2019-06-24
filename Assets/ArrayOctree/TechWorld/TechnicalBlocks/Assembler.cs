@@ -139,7 +139,7 @@ public class Assembler : TechnicalBlock
             }
         }
     }
-    public override int CanOutput()
+    public override int CanOutput(Vector3Int exitDirection)
     {
         if(outputAmount != 0)
         {
@@ -147,7 +147,7 @@ public class Assembler : TechnicalBlock
         }
         return 0;
     }
-    public override int Output()
+    public override int Output(Vector3Int exitDirection)
     {
         outputAmount -= 1;
         return outputID;

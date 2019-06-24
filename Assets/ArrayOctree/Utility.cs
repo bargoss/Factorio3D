@@ -25,117 +25,63 @@ public static class Utility
         chunkIndex3D = new Vector3Int((int)quotinent.x, (int)quotinent.y, (int)quotinent.z);
         voxelIndex3D = new Vector3Int((int)remainder.x, (int)remainder.y, (int)remainder.z);
     }
-    /*
-    public static Vector3Int ToVector3Int(this byte direction)
-    {
-        Vector3Int output = new Vector3Int(-1, -1, -1);
-        if((direction & 0b001) == 0b001)
-        {
-            output.x = 1;
-        }
-        if ((direction & 0b010) == 0b010)
-        {
-            output.y = 1;
-        }
-        if ((direction & 0b100) == 0b100)
-        {
-            output.z = 1;
-        }
-        return output;
-    }
-    public static byte ToDirection(this Vector3Int vector3Int)
-    {
-        byte direction = 0;
-        if(vector3Int.x > 0)
-        {
-            direction += 1;
-        }
-        if (vector3Int.y > 0)
-        {
-            direction += 2;
-        }
-        if (vector3Int.z > 0)
-        {
-            direction += 4;
-        }
-        return direction;
-    }
 
-    public static Vector3Int ToVector3Int(this byte direction)
-    {
-        Vector3Int output = new Vector3Int(-1, -1, -1);
-        if ((direction & 0b001) == 0b001)
-        {
-            output.x = 1;
-        }
-        else if ((direction & 0b010) == 0b010)
-        {
-            output.y = 1;
-        }
-        else if ((direction & 0b100) == 0b100)
-        {
-            output.z = 1;
-        }
-
-        if((direction & 0b1000) == 0b1000)
-        {
-            output.x *= -1;
-            output.y *= -1;
-            output.z *= -1;
-        }
-        return output;
-    }
-    */
 
     // direction: XXYYZZ
     // direction: [-1,0,1,2] [-1,0,1,2] [-1,0,1,2]
     // dont ever give 0b11 to field
+    public static readonly Vector3Int[] directionVectors =
+    {
+            new Vector3Int(0, 0, 1),
+            new Vector3Int(0, 0, -1),
+
+            new Vector3Int(0, 1,0),
+            new Vector3Int(0, -1,0),
+
+            new Vector3Int(1, 0,0),
+            new Vector3Int(-1, 0,0),
+    };
+    public static readonly byte[] directionBytes =
+    {
+            0b000001,
+            0b000010,
+            0b000100,
+            0b001000,
+            0b010000,
+            0b100000,
+    };
+
+    // its a bitmask
+
+    // 00 00 01 right
+    // 00 00 11 right, left
+    // 10 00 00 back
+
+
+
+
+    // direction should have only one bit
     public static Vector3Int ToVector3Int(this byte direction)
     {
-        int z = (direction & 0b110000) >> 4;
-        int y = (direction & 0b001100) >> 2;
-        int x = (direction & 0b000011);
-
-        Vector3Int output = new Vector3Int(x - 1, y - 1, z - 1);
-        return output;
+        for(int i = 0; i < 6; i++)
+        {
+            if(direction == directionBytes[i])
+            {
+                return directionVectors[i];
+            }
+        }
+        return Vector3Int.zero; // cant find
     }
     public static byte ToDirection(this Vector3Int vector3Int)
     {
-        byte direction = 0b010101; // 0,0,0
-        if (vector3Int.x != 0)
+        for (int i = 0; i < 6; i++)
         {
-            if(vector3Int.x > 0)
+            if(vector3Int == directionVectors[i])
             {
-                direction += 0b000001;
-            }
-            else
-            {
-                direction -= 0b000001;
+                return directionBytes[i];
             }
         }
-        if (vector3Int.y != 0)
-        {
-            if (vector3Int.y > 0)
-            {
-                direction += 0b000100;
-            }
-            else
-            {
-                direction -= 0b000100;
-            }
-        }
-        if (vector3Int.z != 0)
-        {
-            if (vector3Int.z > 0)
-            {
-                direction += 0b010000;
-            }
-            else
-            {
-                direction -= 0b010000;
-            }
-        }
-        return direction;
+        return 7; // cant find
     }
 
     public static Vector3 GetMousePosInWorldSpace(Plane plane, Camera camera)

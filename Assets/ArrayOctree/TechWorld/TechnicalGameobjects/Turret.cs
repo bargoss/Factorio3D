@@ -28,7 +28,7 @@ public class Turret : TechnicalGo
     }
     public bool CanShoot()
     {
-        if(goConnection.CanOutput() != 0 && Time.time > lastShot + coolDown)
+        if(goConnection.CanOutput(Vector3Int.zero) != 0 && Time.time > lastShot + coolDown)
         {
             return true;
         }
@@ -36,7 +36,7 @@ public class Turret : TechnicalGo
     }
     void ConsumeAmmo()
     {
-        goConnection.Output();
+        goConnection.Output(Vector3Int.zero);
     }
 
     public void TryShoot(Vector3 targetDirection)

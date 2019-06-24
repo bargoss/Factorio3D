@@ -25,9 +25,9 @@ public class GoConnection : TechnicalBlock
         GameObject.Destroy(gameObject);
     }
 
-    public override int CanOutput()
+    public override int CanOutput(Vector3Int exitDirection)
     {
-        return restrictedStorage.CanOutput();
+        return restrictedStorage.CanOutput(exitDirection);
     }
 
     public override bool CanTake(int itemID, Vector3Int entryDirection)
@@ -35,9 +35,9 @@ public class GoConnection : TechnicalBlock
         return restrictedStorage.CanTake(itemID, entryDirection);
     }
 
-    public override int Output()
+    public override int Output(Vector3Int exitDirection)
     {
-        return restrictedStorage.Output();
+        return restrictedStorage.Output(exitDirection);
     }
 
     public override void Take(int itemID, Vector3Int entryDirection)
