@@ -7,13 +7,13 @@ public class TechBlocksTests : MonoBehaviour
     public TechnicalGoInfo turretInfo;
 
     TechWorldMono techWorldMono;
-    List<Conveyor> spawners;
+    List<Pipe> spawners;
     // Start is called before the first frame update
     void Start()
     {
         techWorldMono = GetComponent<TechWorldMono>();
 
-        spawners = new List<Conveyor>();
+        spawners = new List<Pipe>();
         //Invoke("TestStuff", 0.3f);
         Invoke("ConveyorTests", 0.1f);
         Invoke("MeshWorld", 0.15f);
@@ -27,7 +27,7 @@ public class TechBlocksTests : MonoBehaviour
             MeshItems();
             if (true)
             {
-                foreach (Conveyor spawner in spawners)
+                foreach (Pipe spawner in spawners)
                 {
                     if (spawner.CanTake(1, Vector3Int.zero))
                     {
@@ -74,7 +74,7 @@ public class TechBlocksTests : MonoBehaviour
     {
         {
             Block conveyorBlock = AddBlock(new Vector3(1.1f, 1.1f, 1.1f), 5, new Vector3Int(1, 0, 0));
-            Conveyor conveyor = (Conveyor)(conveyorBlock.technicalBlock);
+            Pipe conveyor = (Pipe)(conveyorBlock.technicalBlock);
             conveyor.Take(1, Vector3Int.zero);
             spawners.Add(conveyor);
         }
@@ -106,7 +106,7 @@ public class TechBlocksTests : MonoBehaviour
 
         {
             Block conveyorBlock = AddBlock(new Vector3(1.1f, y, z), 5, new Vector3Int(1, 0, 0));
-            Conveyor conveyor = (Conveyor)(conveyorBlock.technicalBlock);
+            Pipe conveyor = (Pipe)(conveyorBlock.technicalBlock);
             conveyor.Take(1, Vector3Int.zero);
             spawners.Add(conveyor);
         }

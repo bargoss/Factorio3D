@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Conveyor : TechnicalBlock
+public class Pipe : TechnicalBlock
 {
     public int[] sectionContains;
     public float[] sectionMovement;
@@ -21,7 +21,7 @@ public class Conveyor : TechnicalBlock
 
 
 
-    public Conveyor(Quaternion rotation, int sectionCount = 4) : base(rotation)
+    public Pipe(Quaternion rotation, int sectionCount = 4) : base(rotation)
     {
         sectionContains = new int[sectionCount];
         sectionMovement = new float[sectionCount];
