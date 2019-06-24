@@ -46,25 +46,30 @@ public class TechWorldSimulator
         int chunkSL = chunkSettings.ChunkSL;
         Chunk<Block> chunk = chunkLayer.GetChunk(chunkIndex);
         // iterate all blocks (for now)
+        int o = 0;
         for(int x = 0; x < chunkSettings.ChunkSL; x++)
         {
+            int realX = x;
             if (XSign)
             {
-                x = chunkSettings.ChunkSL - x - 1;
+                realX = chunkSettings.ChunkSL - x - 1;
             }
             for (int y = 0; y < chunkSettings.ChunkSL; y++)
             {
+                int realY = y;
                 if (YSign)
                 {
-                    y = chunkSettings.ChunkSL - y - 1;
+                    realY = chunkSettings.ChunkSL - y - 1;
                 }
                 for (int z = 0; z < chunkSettings.ChunkSL; z++)
                 {
+                    int realZ = z;
                     if (ZSign)
                     {
-                        z = chunkSettings.ChunkSL - z - 1;
+                        realZ = chunkSettings.ChunkSL - z - 1;
                     }
-                    Vector3Int indexInChunk = new Vector3Int(x, y, z);
+                    Vector3Int indexInChunk = new Vector3Int(realX, realY, realZ);
+                    //if(o < 6) { Debug.Log(indexInChunk); o++;  }
                     Block block = chunk.GetVoxel(indexInChunk);
                     TechnicalBlock technicalBlock = block.technicalBlock;
                     if(technicalBlock != null)
@@ -97,7 +102,7 @@ public class TechWorldSimulator
     void ChangeIterationOrder()
     {
         iterationOrdersIndex += 1;
-        iterationOrdersIndex = iterationOrdersIndex & 8;
+        iterationOrdersIndex = iterationOrdersIndex % 8;
     }
 }
 /*

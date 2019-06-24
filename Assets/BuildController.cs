@@ -50,7 +50,7 @@ public class BuildController : MonoBehaviour
         Vector3 mousePositionActual = mousePosition + Vector3.one * 0.5f;
         if (Input.GetMouseButton(0))
         {
-            print("put block: " + selectedBlockType + ", at: " + mousePositionActual);
+            //print("put block: " + selectedBlockType + ", at: " + mousePositionActual);
             SetBlock(mousePositionActual, TargetRotation, selectedBlockType);
         }
         if (Input.GetKeyDown(KeyCode.R))
