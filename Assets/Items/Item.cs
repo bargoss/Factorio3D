@@ -22,6 +22,7 @@ public class Item : ScriptableObject
         Pipe,
         Assembler,
         PipeOutput,
-        Splitter
+        Splitter,
+        PipeJunction
     };
 }

@@ -88,6 +88,9 @@ public class TechWorld // world + tech stuff
             case Item.TechBlockType.Splitter:
                 block.technicalBlock = new Splitter(rotation);
                 break;
+            case Item.TechBlockType.PipeJunction:
+                block.technicalBlock = new PipeJunction(rotation);
+                break;
         }
     }
 }

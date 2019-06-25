@@ -22,23 +22,23 @@ public class TechBlocksTests : MonoBehaviour
     private void FixedUpdate()
     {
         a = !a;
-        if (Time.time > 0.31f)
+        if (Time.time > 1.31f)
         {
-            MeshItems();
+            //MeshItems();
             if (true)
             {
                 foreach (Pipe spawner in spawners)
                 {
-                    if (spawner.CanTake(1, Vector3Int.zero))
+                    if (spawner.CanTake(1, spawner.ForwardDirection))
                     {
                         if (a)
                         {
-                            spawner.Take(1, Vector3Int.zero);
+                            spawner.Take(1, spawner.ForwardDirection);
                             //if (first) a = !a;
                         }
                         else
                         {
-                            spawner.Take(2, Vector3Int.zero);
+                            spawner.Take(2, spawner.ForwardDirection);
                             //if (first) a = !a;
                         }
                         a = !a;

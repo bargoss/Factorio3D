@@ -134,7 +134,7 @@ public class Pipe : TechnicalBlock
 
     public override bool CanTake(int itemID, Vector3Int entryDirection)
     {
-        if(sectionContains[midSection] == 0)
+        if(sectionContains[midSection] == 0 && entryDirection == ForwardDirection)
         {
             return true;
         }
