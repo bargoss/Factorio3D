@@ -76,17 +76,20 @@ public class TechWorld // world + tech stuff
         {
             case Item.TechBlockType.NonTechnical:
                 break;
-            case Item.TechBlockType.Conveyor:
-                block.technicalBlock = new Conveyor(rotation);
+            case Item.TechBlockType.Pipe:
+                block.technicalBlock = new Pipe(rotation);
                 break;
             case Item.TechBlockType.Assembler:
                 block.technicalBlock = new Assembler();
                 break;
-            case Item.TechBlockType.Inserter:
-                block.technicalBlock = new Inserter(rotation);
+            case Item.TechBlockType.PipeOutput:
+                block.technicalBlock = new PipeOutput(rotation);
                 break;
             case Item.TechBlockType.Splitter:
                 block.technicalBlock = new Splitter(rotation);
+                break;
+            case Item.TechBlockType.PipeJunction:
+                block.technicalBlock = new PipeJunction(rotation);
                 break;
         }
     }

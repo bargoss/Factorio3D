@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Inserter : Conveyor
+public class PipeOutput : Pipe
 {
-    public Inserter(Quaternion rotation) : base(rotation, 7)
+    public PipeOutput(Quaternion rotation) : base(rotation, 7)
     {
         requestedNeighbours = new Vector3Int[2];
         Vector3Int forwardDir = ForwardDirection;

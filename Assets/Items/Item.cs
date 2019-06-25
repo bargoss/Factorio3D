@@ -19,9 +19,10 @@ public class Item : ScriptableObject
     public enum TechBlockType
     {
         NonTechnical,
-        Conveyor,
+        Pipe,
         Assembler,
-        Inserter,
-        Splitter
+        PipeOutput,
+        Splitter,
+        PipeJunction
     };
 }
