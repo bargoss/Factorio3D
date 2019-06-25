@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WoodenGear
   m_EditorClassIdentifier: 
   itemName: WoodenGear
-  itemMesh: {fileID: 4300000, guid: 4b5986743f90d504c9623d2dcd89de5e, type: 3}
-  itemMaterial: {fileID: 2100000, guid: bbed64fc147b99146be8a86b30231e8a, type: 2}
-  blockMesh: {fileID: 0}
-  blockMaterial: {fileID: 0}
+  itemModel: 3
+  blockModel: 0
   techBlockType: 0

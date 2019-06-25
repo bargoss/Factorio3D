@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1047e87ea230fcd4393661d75d929349, type: 3}
-  m_Name: Wood
+  m_Script: {fileID: 11500000, guid: ae259cb2bc8e09a40978722b2687eca1, type: 3}
+  m_Name: PipeOutput
   m_EditorClassIdentifier: 
-  itemName: Wood
-  itemModel: 1
-  blockModel: 0
-  techBlockType: 0
+  mesh: {fileID: 4300002, guid: 19fb11ae4fa3f914e974c1f76cd48bcf, type: 3}
+  material: {fileID: 2100000, guid: 6a76088c28322bd478aa34ded7cffca7, type: 2}

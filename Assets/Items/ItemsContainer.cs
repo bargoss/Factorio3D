@@ -11,4 +11,18 @@ public class ItemsContainer : ScriptableObject
 
     public Item[] items;
     public Recipe[] recipes;
+    public Model[] models;
+
+    public Model GetItemModel(int itemType)
+    {
+        if (itemType == 0) return null;
+        int modelType = items[itemType].itemModel;
+        return models[modelType];
+    }
+    public Model GetBlockModel(int itemType)
+    {
+        if (itemType == 0) return null;
+        int modelType = items[itemType].blockModel;
+        return models[modelType];
+    }
 }

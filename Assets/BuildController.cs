@@ -70,7 +70,7 @@ public class BuildController : MonoBehaviour
         for (int i = 0; i < itemsContainer.items.Length; i++)
         {
             Item item = itemsContainer.items[i];
-            if (item != null && item.blockMesh != null)
+            if (item != null && item.blockModel != 0)
             {
                 int aasdas = i;
                 GameObject content = blocksList.CreateContent();
@@ -93,7 +93,9 @@ public class BuildController : MonoBehaviour
         Quaternion rotation = rotations[targetRotationIndex];
         Matrix4x4[] matrices = new Matrix4x4[1];
         matrices[0] = Matrix4x4.TRS(blockPos, rotation, Vector3.one * 0.5f);
-        Graphics.DrawMeshInstanced(item.blockMesh, 0, item.blockMaterial, matrices);
+        Mesh itemMesh = itemsContainer.models[item.blockModel].mesh;
+        Material itemMaterial = itemsContainer.models[item.blockModel].material;
+        Graphics.DrawMeshInstanced(itemMesh, 0, itemMaterial, matrices);
     }
     void CameraMovement()
     {

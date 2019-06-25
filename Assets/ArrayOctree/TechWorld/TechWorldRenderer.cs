@@ -25,13 +25,21 @@ public class TechWorldRenderer
 
         for (int i = 0; i < itemsContainer.items.Length; i++)
         {
-            if (itemsContainer.items[i] != null)
+            if (itemsContainer.items[i] != null && i != 0)
             {
-                blockMeshes[i] = itemsContainer.items[i].blockMesh;
-                blockMaterials[i] = itemsContainer.items[i].blockMaterial;
+                Model blockModel = itemsContainer.GetBlockModel(i);
+                if (blockModel != null)
+                {
+                    blockMeshes[i] = blockModel.mesh;
+                    blockMaterials[i] = blockModel.material;
+                }
 
-                itemMeshes[i] = itemsContainer.items[i].itemMesh;
-                itemMaterials[i] = itemsContainer.items[i].itemMaterial;
+                Model itemModel = itemsContainer.GetItemModel(i);
+                if (itemModel != null)
+                {
+                    itemMeshes[i] = itemModel.mesh;
+                    itemMaterials[i] = itemModel.material;
+                }
             }
         }
     }

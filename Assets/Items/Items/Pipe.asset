@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Pipe
   m_EditorClassIdentifier: 
   itemName: Pipe
-  itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  itemMaterial: {fileID: 2100000, guid: 6a76088c28322bd478aa34ded7cffca7, type: 2}
-  blockMesh: {fileID: 4300002, guid: 19fb11ae4fa3f914e974c1f76cd48bcf, type: 3}
-  blockMaterial: {fileID: 2100000, guid: 6a76088c28322bd478aa34ded7cffca7, type: 2}
+  itemModel: 5
+  blockModel: 5
   techBlockType: 1
