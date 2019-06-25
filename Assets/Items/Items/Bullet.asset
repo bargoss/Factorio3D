@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   itemName: Bullet
-  itemMesh: {fileID: 4300000, guid: 56e09c4455324774b8a75e37ed1f7ff0, type: 3}
-  itemMaterial: {fileID: 2100000, guid: 61f124d1029610849a5571a7f9fea91d, type: 2}
-  blockMesh: {fileID: 0}
-  blockMaterial: {fileID: 0}
+  itemModel: 7
+  blockModel: 0
   techBlockType: 0

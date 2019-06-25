@@ -11,4 +11,5 @@ public class ItemsContainer : ScriptableObject
 
     public Item[] items;
     public Recipe[] recipes;
+    public Model[] models;
 }

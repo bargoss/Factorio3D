@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1047e87ea230fcd4393661d75d929349, type: 3}
-  m_Name: Wood
+  m_Script: {fileID: 11500000, guid: ae259cb2bc8e09a40978722b2687eca1, type: 3}
+  m_Name: WoodenGear
   m_EditorClassIdentifier: 
-  itemName: Wood
-  itemModel: 1
-  blockModel: 0
-  techBlockType: 0
+  mesh: {fileID: 4300000, guid: 4b5986743f90d504c9623d2dcd89de5e, type: 3}
+  material: {fileID: 2100000, guid: bbed64fc147b99146be8a86b30231e8a, type: 2}

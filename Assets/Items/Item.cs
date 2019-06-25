@@ -8,11 +8,9 @@ public class Item : ScriptableObject
 {
     public string itemName;
 
-    public Mesh itemMesh;
-    public Material itemMaterial;
+    public int itemModel;
 
-    public Mesh blockMesh;
-    public Material blockMaterial;
+    public int blockModel;
 
     public TechBlockType techBlockType;
 

@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   itemName: Stone
-  itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  itemMaterial: {fileID: 2100000, guid: 6a76088c28322bd478aa34ded7cffca7, type: 2}
-  blockMesh: {fileID: 0}
-  blockMaterial: {fileID: 0}
+  itemModel: 2
+  blockModel: 0
   techBlockType: 0

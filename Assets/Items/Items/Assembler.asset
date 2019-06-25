@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Assembler
   m_EditorClassIdentifier: 
   itemName: Assembler
-  itemMesh: {fileID: 0}
-  itemMaterial: {fileID: 0}
-  blockMesh: {fileID: 4300000, guid: d83ec7dad17aec94e9aeae507059496c, type: 3}
-  blockMaterial: {fileID: 2100000, guid: 6a76088c28322bd478aa34ded7cffca7, type: 2}
+  itemModel: 4
+  blockModel: 4
   techBlockType: 2
