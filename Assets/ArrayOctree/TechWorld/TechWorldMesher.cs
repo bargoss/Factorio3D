@@ -69,11 +69,11 @@ public class TechWorldMesher
                         TechnicalBlock.ItemMesh[] itemMeshes = technicalBlock.GetDynamicMesh();
                         for (int i = 0; i < itemMeshes.Length; i++)
                         {
-                            if (itemMeshes[i].itemType != 0)
+                            if (itemMeshes[i].modelType != 0)
                             {
                                 Matrix4x4 transform = itemMeshes[i].transform;
                                 transform = Matrix4x4.Translate(position) * transform;
-                                instancedMeshInfo.AddInstance(transform, itemMeshes[i].itemType);
+                                instancedMeshInfo.AddInstance(transform, itemMeshes[i].modelType);
                             }
                         }
                     }

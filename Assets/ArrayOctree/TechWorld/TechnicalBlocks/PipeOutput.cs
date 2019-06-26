@@ -13,7 +13,15 @@ public class PipeOutput : Pipe
 
         sectionStart = -localTransform.GetColumn(2) * (0.75f);
     }
-    
+
+    public override ItemMesh[] GetStaticMesh()
+    {
+        ItemMesh[] itemMesh = new ItemMesh[1];
+        itemMesh[0].modelType = 6;
+        itemMesh[0].transform = Matrix4x4.identity;
+        return itemMesh;
+    }
+
     public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)
     {
         TryTransfer(neighbours[1], this, ForwardDirection);

@@ -29,7 +29,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
 
     public virtual ItemMesh[] GetStaticMesh()
     {
-        return null;
+        return new ItemMesh[0];
     }
 
     public virtual ItemMesh[] GetDynamicMesh()
@@ -60,7 +60,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
     public struct ItemMesh
     {
         public Matrix4x4 transform; 
-        public int itemType;
+        public int modelType;
     }
 
     

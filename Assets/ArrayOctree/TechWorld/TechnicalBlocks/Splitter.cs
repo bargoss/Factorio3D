@@ -42,6 +42,8 @@ public class Splitter : TechnicalBlock
         UpdateQueues(neighbours);
     }
 
+    
+
     void UpdateQueues(TechnicalBlock[] neighbours)
     {
         TryOutputingLane(mainLaneStorage, ref mainLaneLastOutputDirection, neighbours);
