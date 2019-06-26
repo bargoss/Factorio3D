@@ -6,6 +6,7 @@ public class PipeJunction : TechnicalBlock
 {
     Queue<int> storage;
     int neighbourPriorityIndex; // neighbours will be traversed starting from this index
+    static readonly int junctionCapacity = 4;
     static readonly Vector3Int[] allNeighbours =
     {
         new Vector3Int(-1,0,0),
@@ -19,7 +20,7 @@ public class PipeJunction : TechnicalBlock
     };
     public PipeJunction(Quaternion rotation) : base(rotation)
     {
-        storage = new Queue<int>(10);
+        storage = new Queue<int>(junctionCapacity);
         requestedNeighbours = allNeighbours;
     }
 
@@ -61,7 +62,7 @@ public class PipeJunction : TechnicalBlock
 
     public override bool CanTake(int itemID, Vector3Int entryDirection)
     {
-        if(itemID != 0 && storage.Count < 10)
+        if(itemID != 0 && storage.Count < junctionCapacity)
         {
             return true;
         }

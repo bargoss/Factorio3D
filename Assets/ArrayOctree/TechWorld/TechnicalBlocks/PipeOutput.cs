@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PipeOutput : Pipe
 {
-    public PipeOutput(Quaternion rotation) : base(rotation, 7)
+    public PipeOutput(Quaternion rotation) : base(rotation)
     {
         requestedNeighbours = new Vector3Int[2];
         Vector3Int forwardDir = ForwardDirection;
@@ -11,7 +11,7 @@ public class PipeOutput : Pipe
         Vector3Int backDir = forwardDir.Multiply(-1);
         requestedNeighbours[1] = backDir;
 
-        sectionStart = -localTransform.GetColumn(2) * (0.75f);
+        //sectionStart = -localTransform.GetColumn(2) * (0.75f);
     }
 
     public override ModelInfo[] GetStaticMesh()
