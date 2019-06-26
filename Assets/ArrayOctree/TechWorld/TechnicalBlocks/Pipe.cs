@@ -17,7 +17,7 @@ public class Pipe : TechnicalBlock
     protected bool inputPriority = true;
     protected bool outputPriority = true;
 
-    ItemMesh[] itemsMesh;
+    ModelInfo[] itemsMesh;
 
 
 
@@ -28,7 +28,7 @@ public class Pipe : TechnicalBlock
 
         sectionInterval = 0.25f;
 
-        itemsMesh = new ItemMesh[sectionCount];
+        itemsMesh = new ModelInfo[sectionCount];
 
         requestedNeighbours = new Vector3Int[1];
         requestedNeighbours[0] = ForwardDirection;
@@ -46,15 +46,15 @@ public class Pipe : TechnicalBlock
         TransferUpdate(deltaTime);
     }
 
-    public override ItemMesh[] GetStaticMesh()
+    public override ModelInfo[] GetStaticMesh()
     {
-        ItemMesh[] itemMesh = new ItemMesh[1];
+        ModelInfo[] itemMesh = new ModelInfo[1];
         itemMesh[0].modelType = 5;
         itemMesh[0].transform = Matrix4x4.identity;
         return itemMesh;
     }
 
-    public override ItemMesh[] GetDynamicMesh()
+    public override ModelInfo[] GetDynamicMesh()
     {
         UpdateItemsMesh();
         return itemsMesh;

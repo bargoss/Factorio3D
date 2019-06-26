@@ -34,15 +34,15 @@ public class PipeJunction : TechnicalBlock
         OutputToNeighbourPipes(neighbours);
     }
 
-    public override ItemMesh[] GetStaticMesh()
+    public override ModelInfo[] GetStaticMesh()
     {
-        ItemMesh[] itemMesh = new ItemMesh[1];
+        ModelInfo[] itemMesh = new ModelInfo[1];
         itemMesh[0].modelType = 8;
         itemMesh[0].transform = Matrix4x4.identity;
         return itemMesh;
     }
 
-    public override ItemMesh[] GetDynamicMesh()
+    public override ModelInfo[] GetDynamicMesh()
     {
         return base.GetDynamicMesh();
     }

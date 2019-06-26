@@ -16,14 +16,14 @@ public class Assembler : TechnicalBlock
     float sinceLastCraft;
     float gearRotation;
 
-    ItemMesh[] gearsMesh;
+    ModelInfo[] gearsMesh;
 
     public Assembler() : base(Quaternion.identity)
     {
         inputIDs = new int[4];
         inputAmounts = new int[4];
 
-        gearsMesh = new ItemMesh[1];
+        gearsMesh = new ModelInfo[1];
         InitializeAnimatedParts();
     }
 
@@ -53,17 +53,17 @@ public class Assembler : TechnicalBlock
             }
         }
     }
-    public override ItemMesh[] GetStaticMesh()
+    public override ModelInfo[] GetStaticMesh()
     {
-        ItemMesh[] itemMesh = new ItemMesh[1];
+        ModelInfo[] itemMesh = new ModelInfo[1];
         itemMesh[0].modelType = 4;
         itemMesh[0].transform = Matrix4x4.Translate(Vector3.zero);
         return itemMesh;
     }
     
-    public override ItemMesh[] GetDynamicMesh()
+    public override ModelInfo[] GetDynamicMesh()
     {
-        ItemMesh[] itemMesh = new ItemMesh[1];
+        ModelInfo[] itemMesh = new ModelInfo[1];
         itemMesh[0].modelType = gearsMesh[0].modelType;
         itemMesh[0].transform = gearsMesh[0].transform;
         itemMesh[0].transform = Matrix4x4.Rotate(Quaternion.Euler(0, gearRotation *220, 0)) * itemMesh[0].transform;
@@ -75,7 +75,7 @@ public class Assembler : TechnicalBlock
     }
     void InitializeAnimatedParts()
     {
-        gearsMesh = new ItemMesh[1];
+        gearsMesh = new ModelInfo[1];
         gearsMesh[0].modelType = 3;
         gearsMesh[0].transform = Matrix4x4.TRS(Vector3.up * 0.45f, Quaternion.LookRotation(Vector3.up), 0.45f * Vector3.one);
     }

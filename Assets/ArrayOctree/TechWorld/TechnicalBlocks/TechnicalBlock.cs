@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TechnicalBlock : IItemInput, IItemOutput
 {
-    protected Matrix4x4 localTransform; // position is always 0,0,0
+    public Matrix4x4 localTransform; // position is always 0,0,0
     public Vector3Int[] requestedNeighbours;
 
     public Vector3Int RightDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
@@ -27,14 +27,14 @@ public class TechnicalBlock : IItemInput, IItemOutput
 
     }
 
-    public virtual ItemMesh[] GetStaticMesh()
+    public virtual ModelInfo[] GetStaticMesh()
     {
-        return new ItemMesh[0];
+        return new ModelInfo[0];
     }
 
-    public virtual ItemMesh[] GetDynamicMesh()
+    public virtual ModelInfo[] GetDynamicMesh()
     {
-        return new ItemMesh[0];
+        return new ModelInfo[0];
     }
     
     public virtual bool CanTake(int itemID, Vector3Int entryDirection)
@@ -57,7 +57,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
         return 0;
     }
 
-    public struct ItemMesh
+    public struct ModelInfo
     {
         public Matrix4x4 transform; 
         public int modelType;
