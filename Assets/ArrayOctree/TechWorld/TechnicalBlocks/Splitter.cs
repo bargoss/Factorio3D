@@ -18,8 +18,6 @@ public class Splitter : TechnicalBlock
     {
         blockedInputLane = Vector3Int.zero;
 
-        //rendersItems = true;
-        updatesNeighbours = true;
 
         requestedNeighbours = new Vector3Int[2];
 
@@ -43,6 +41,8 @@ public class Splitter : TechnicalBlock
 
         UpdateQueues(neighbours);
     }
+
+    
 
     void UpdateQueues(TechnicalBlock[] neighbours)
     {

@@ -27,19 +27,25 @@ public class TechWorldMesher
                     Vector3Int indexInChunk = new Vector3Int(x, y, z);
                     Vector3 position = new Vector3(x, y, z) * chunkSettings.VoxelSize + chunkStart;
                     Block block = chunk.GetVoxel(indexInChunk);
-                    int blockType = block.blockType;
+                    //int blockType = block.blockType;
 
+                    /*
                     Quaternion rotation = Quaternion.identity;
                     TechnicalBlock technicalBlock = block.technicalBlock;
                     if(technicalBlock is GoConnection) { continue; }
                     if(technicalBlock != null)
                     {
-                        //Vector3 lookDirection = technicalBlock.ForwardDirection;
-                        //rotation = Quaternion.LookRotation(lookDirection);
                         rotation = Quaternion.LookRotation(technicalBlock.ForwardDirection, technicalBlock.UpDirection);
                     }
                     Matrix4x4 transform = Matrix4x4.TRS(position, rotation, Vector3.one * chunkSettings.VoxelSize * 0.5f);
                     instancedMeshInfo.types[blockType].AddTransform(transform);
+                    */
+                    TechnicalBlock technicalBlock = block.technicalBlock;
+                    if(technicalBlock != null)
+                    {
+                        instancedMeshInfo.AddModelInfos(technicalBlock.GetStaticMesh(), Matrix4x4.Translate(position) * technicalBlock.localTransform * Matrix4x4.Scale(Vector3.one * 0.5f));
+                    }
+                    
                 }
             }
         }
@@ -64,19 +70,16 @@ public class TechWorldMesher
                     Block block = chunk.GetVoxel(indexInChunk);
                     int blockType = block.blockType;
                     TechnicalBlock technicalBlock = block.technicalBlock;
-                    if(technicalBlock != null)
+                    if (technicalBlock != null)
                     {
-                        if (technicalBlock.RendersItems)
+                        TechnicalBlock.ModelInfo[] itemMeshes = technicalBlock.GetDynamicMesh();
+                        for (int i = 0; i < itemMeshes.Length; i++)
                         {
-                            TechnicalBlock.ItemMesh[] itemMeshes = technicalBlock.GetItemsMesh();
-                            for(int i = 0; i < itemMeshes.Length; i++)
+                            if (itemMeshes[i].modelType != 0)
                             {
-                                if (itemMeshes[i].itemType != 0)
-                                {
-                                    Matrix4x4 transform = itemMeshes[i].transform;
-                                    transform = Matrix4x4.Translate(position) * transform;
-                                    instancedMeshInfo.AddInstance(transform, itemMeshes[i].itemType);
-                                }
+                                Matrix4x4 transform = itemMeshes[i].transform;
+                                transform = Matrix4x4.Translate(position) * transform;
+                                instancedMeshInfo.AddInstance(transform, itemMeshes[i].modelType);
                             }
                         }
                     }
@@ -105,6 +108,14 @@ public class InstancedMeshInfo
     {
         types[type].AddTransform(transform);
     }
+    public void AddModelInfos(TechnicalBlock.ModelInfo[] modelInfos, Matrix4x4 transform)
+    {
+        for(int i = 0; i < modelInfos.Length; i++)
+        {
+            int modelType = modelInfos[i].modelType;
+            types[modelType].AddTransform(transform * modelInfos[i].transform);
+        }
+    }
 }
 
 
@@ -119,4 +130,13 @@ public class InstancedMeshInfoType
     {
         transforms.Add(transform);
     }
+    /*
+    public void AddTransform(Matrix4x4[] transforms)
+    {
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            this.transforms.Add(transforms[i]);
+        }
+    }
+    */
 }

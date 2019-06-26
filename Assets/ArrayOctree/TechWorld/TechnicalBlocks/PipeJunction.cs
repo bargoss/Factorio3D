@@ -21,7 +21,6 @@ public class PipeJunction : TechnicalBlock
     {
         storage = new Queue<int>(10);
         requestedNeighbours = allNeighbours;
-        updatesNeighbours = true;
     }
 
     public override void Update(float deltaTime)
@@ -35,9 +34,17 @@ public class PipeJunction : TechnicalBlock
         OutputToNeighbourPipes(neighbours);
     }
 
-    public override ItemMesh[] GetItemsMesh()
+    public override ModelInfo[] GetStaticMesh()
     {
-        return base.GetItemsMesh();
+        ModelInfo[] itemMesh = new ModelInfo[1];
+        itemMesh[0].modelType = 8;
+        itemMesh[0].transform = Matrix4x4.identity;
+        return itemMesh;
+    }
+
+    public override ModelInfo[] GetDynamicMesh()
+    {
+        return base.GetDynamicMesh();
     }
 
     public override int CanOutput(Vector3Int exitDirection)

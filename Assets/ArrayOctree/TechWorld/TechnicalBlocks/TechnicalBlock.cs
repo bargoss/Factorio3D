@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class TechnicalBlock : IItemInput, IItemOutput
 {
-    protected bool updatesNeighbours; // pass in neighbours if true
-    protected bool rendersItems;
-    protected Matrix4x4 localTransform; // position is always 0,0,0
+    public Matrix4x4 localTransform; // position is always 0,0,0
     public Vector3Int[] requestedNeighbours;
-
-    public bool UpdatesNeighbour { get => updatesNeighbours; }
 
     public Vector3Int RightDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
     public Vector3Int UpDirection { get { return ((Vector3)localTransform.GetColumn(1)).ToVector3Int(); } }
     public Vector3Int ForwardDirection { get { return ((Vector3)localTransform.GetColumn(2)).ToVector3Int(); } }
-    public bool RendersItems { get => rendersItems; }
 
 
     public TechnicalBlock(Quaternion rotation)
     {
-        updatesNeighbours = false;
-        rendersItems = false;
+        requestedNeighbours = new Vector3Int[0];
         this.localTransform = Matrix4x4.Rotate(rotation);
     }
 
@@ -32,10 +26,15 @@ public class TechnicalBlock : IItemInput, IItemOutput
     {
 
     }
-    
-    public virtual ItemMesh[] GetItemsMesh()
+
+    public virtual ModelInfo[] GetStaticMesh()
     {
-        return null;
+        return new ModelInfo[0];
+    }
+
+    public virtual ModelInfo[] GetDynamicMesh()
+    {
+        return new ModelInfo[0];
     }
     
     public virtual bool CanTake(int itemID, Vector3Int entryDirection)
@@ -58,10 +57,10 @@ public class TechnicalBlock : IItemInput, IItemOutput
         return 0;
     }
 
-    public struct ItemMesh
+    public struct ModelInfo
     {
         public Matrix4x4 transform; 
-        public int itemType;
+        public int modelType;
     }
 
     

@@ -17,7 +17,7 @@ public class Pipe : TechnicalBlock
     protected bool inputPriority = true;
     protected bool outputPriority = true;
 
-    ItemMesh[] itemsMesh;
+    ModelInfo[] itemsMesh;
 
 
 
@@ -28,16 +28,13 @@ public class Pipe : TechnicalBlock
 
         sectionInterval = 0.25f;
 
-        updatesNeighbours = true;
-        rendersItems = true;
-        
-        itemsMesh = new ItemMesh[sectionCount];
+        itemsMesh = new ModelInfo[sectionCount];
 
         requestedNeighbours = new Vector3Int[1];
         requestedNeighbours[0] = ForwardDirection;
 
         lastSection = sectionCount - 1;
-        sectionStart = Vector3.zero;
+        sectionStart = -(Vector3)ForwardDirection * 0.5f;
     }
     
 
@@ -48,7 +45,16 @@ public class Pipe : TechnicalBlock
         base.Update(deltaTime);
         TransferUpdate(deltaTime);
     }
-    public override ItemMesh[] GetItemsMesh()
+
+    public override ModelInfo[] GetStaticMesh()
+    {
+        ModelInfo[] itemMesh = new ModelInfo[1];
+        itemMesh[0].modelType = 5;
+        itemMesh[0].transform = Matrix4x4.identity;
+        return itemMesh;
+    }
+
+    public override ModelInfo[] GetDynamicMesh()
     {
         UpdateItemsMesh();
         return itemsMesh;
@@ -61,11 +67,11 @@ public class Pipe : TechnicalBlock
         {
             if (sectionContains[i] != 0)
             {
-                itemsMesh[i].itemType = sectionContains[i];
+                itemsMesh[i].modelType = sectionContains[i];
                 Vector3 position = sectionStart + (i*sectionInterval + sectionMovement[i]) * lookDirectionVec;
                 itemsMesh[i].transform = Matrix4x4.TRS(position, Quaternion.identity, 0.25f * Vector3.one);
             }
-            else { itemsMesh[i].itemType = 0; }
+            else { itemsMesh[i].modelType = 0; }
         }
     }
     public override void UpdateNeighbour(float deltaTime, TechnicalBlock[] neighbours)
