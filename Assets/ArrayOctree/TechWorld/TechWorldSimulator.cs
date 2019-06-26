@@ -72,26 +72,24 @@ public class TechWorldSimulator
                     //if(o < 6) { Debug.Log(indexInChunk); o++;  }
                     Block block = chunk.GetVoxel(indexInChunk);
                     TechnicalBlock technicalBlock = block.technicalBlock;
-                    if(technicalBlock != null)
+                    if (technicalBlock != null)
                     {
-                        if (technicalBlock.UpdatesNeighbour)
+                        Vector3Int myVoxelIndexInLayer = chunkIndex.Multiply(chunkSL) + indexInChunk;
+                        TechnicalBlock[] targetTechBlocks = new TechnicalBlock[technicalBlock.requestedNeighbours.Length];
+
+                        for (int i = 0; i < technicalBlock.requestedNeighbours.Length; i++)
                         {
-                            Vector3Int myVoxelIndexInLayer = chunkIndex.Multiply(chunkSL) + indexInChunk;
-                            TechnicalBlock[] targetTechBlocks = new TechnicalBlock[technicalBlock.requestedNeighbours.Length];
-                            
-                            for (int i = 0; i < technicalBlock.requestedNeighbours.Length; i++)
+                            Vector3Int delta = technicalBlock.requestedNeighbours[i];
+                            Vector3Int neighbourIndexInLayer = myVoxelIndexInLayer + delta;
+                            Block targetBlock = chunkLayer.GetVoxel(neighbourIndexInLayer);
+                            TechnicalBlock targetTechBlock = targetBlock.technicalBlock;
+                            if (targetTechBlock != null)
                             {
-                                Vector3Int delta = technicalBlock.requestedNeighbours[i];
-                                Vector3Int neighbourIndexInLayer = myVoxelIndexInLayer + delta;
-                                Block targetBlock = chunkLayer.GetVoxel(neighbourIndexInLayer);
-                                TechnicalBlock targetTechBlock = targetBlock.technicalBlock;
-                                if (targetTechBlock != null)
-                                {
-                                    targetTechBlocks[i] = targetTechBlock;
-                                }
+                                targetTechBlocks[i] = targetTechBlock;
                             }
-                            technicalBlock.UpdateNeighbour(deltaTime, targetTechBlocks);
                         }
+                        technicalBlock.UpdateNeighbour(deltaTime, targetTechBlocks);
+
                         technicalBlock.Update(deltaTime);
                     }
                 }

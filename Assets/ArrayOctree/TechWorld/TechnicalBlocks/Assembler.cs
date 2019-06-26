@@ -23,7 +23,6 @@ public class Assembler : TechnicalBlock
         inputIDs = new int[4];
         inputAmounts = new int[4];
 
-        rendersDynamicMesh = true;
         gearsMesh = new ItemMesh[1];
         InitializeAnimatedParts();
     }

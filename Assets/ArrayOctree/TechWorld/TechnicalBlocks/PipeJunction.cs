@@ -21,7 +21,6 @@ public class PipeJunction : TechnicalBlock
     {
         storage = new Queue<int>(10);
         requestedNeighbours = allNeighbours;
-        updatesNeighbours = true;
     }
 
     public override void Update(float deltaTime)

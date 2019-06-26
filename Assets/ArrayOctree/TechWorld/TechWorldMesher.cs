@@ -64,19 +64,16 @@ public class TechWorldMesher
                     Block block = chunk.GetVoxel(indexInChunk);
                     int blockType = block.blockType;
                     TechnicalBlock technicalBlock = block.technicalBlock;
-                    if(technicalBlock != null)
+                    if (technicalBlock != null)
                     {
-                        if (technicalBlock.RendersItems)
+                        TechnicalBlock.ItemMesh[] itemMeshes = technicalBlock.GetDynamicMesh();
+                        for (int i = 0; i < itemMeshes.Length; i++)
                         {
-                            TechnicalBlock.ItemMesh[] itemMeshes = technicalBlock.GetDynamicMesh();
-                            for(int i = 0; i < itemMeshes.Length; i++)
+                            if (itemMeshes[i].itemType != 0)
                             {
-                                if (itemMeshes[i].itemType != 0)
-                                {
-                                    Matrix4x4 transform = itemMeshes[i].transform;
-                                    transform = Matrix4x4.Translate(position) * transform;
-                                    instancedMeshInfo.AddInstance(transform, itemMeshes[i].itemType);
-                                }
+                                Matrix4x4 transform = itemMeshes[i].transform;
+                                transform = Matrix4x4.Translate(position) * transform;
+                                instancedMeshInfo.AddInstance(transform, itemMeshes[i].itemType);
                             }
                         }
                     }

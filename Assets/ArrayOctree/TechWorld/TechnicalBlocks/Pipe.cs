@@ -28,9 +28,6 @@ public class Pipe : TechnicalBlock
 
         sectionInterval = 0.25f;
 
-        updatesNeighbours = true;
-        rendersDynamicMesh = true;
-        
         itemsMesh = new ItemMesh[sectionCount];
 
         requestedNeighbours = new Vector3Int[1];

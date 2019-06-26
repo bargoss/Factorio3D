@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class TechnicalBlock : IItemInput, IItemOutput
 {
-    protected bool updatesNeighbours; // pass in neighbours if true
-    protected bool rendersDynamicMesh;
     protected Matrix4x4 localTransform; // position is always 0,0,0
     public Vector3Int[] requestedNeighbours;
-
-    public bool UpdatesNeighbour { get => updatesNeighbours; }
 
     public Vector3Int RightDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
     public Vector3Int UpDirection { get { return ((Vector3)localTransform.GetColumn(1)).ToVector3Int(); } }
     public Vector3Int ForwardDirection { get { return ((Vector3)localTransform.GetColumn(2)).ToVector3Int(); } }
-    public bool RendersItems { get => rendersDynamicMesh; }
 
 
     public TechnicalBlock(Quaternion rotation)
     {
-        updatesNeighbours = false;
-        rendersDynamicMesh = false;
+        requestedNeighbours = new Vector3Int[0];
         this.localTransform = Matrix4x4.Rotate(rotation);
     }
 
@@ -40,7 +34,7 @@ public class TechnicalBlock : IItemInput, IItemOutput
 
     public virtual ItemMesh[] GetDynamicMesh()
     {
-        return null;
+        return new ItemMesh[0];
     }
     
     public virtual bool CanTake(int itemID, Vector3Int entryDirection)
