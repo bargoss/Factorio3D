@@ -34,7 +34,7 @@ public class Pipe : TechnicalBlock
         requestedNeighbours[0] = ForwardDirection;
 
         lastSection = sectionCount - 1;
-        sectionStart = Vector3.zero;
+        sectionStart = -(Vector3)ForwardDirection * 0.5f;
     }
     
 
