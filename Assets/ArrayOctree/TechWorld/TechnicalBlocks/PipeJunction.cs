@@ -35,9 +35,9 @@ public class PipeJunction : TechnicalBlock
         OutputToNeighbourPipes(neighbours);
     }
 
-    public override ItemMesh[] GetItemsMesh()
+    public override ItemMesh[] GetDynamicMesh()
     {
-        return base.GetItemsMesh();
+        return base.GetDynamicMesh();
     }
 
     public override int CanOutput(Vector3Int exitDirection)

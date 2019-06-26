@@ -29,7 +29,7 @@ public class Pipe : TechnicalBlock
         sectionInterval = 0.25f;
 
         updatesNeighbours = true;
-        rendersItems = true;
+        rendersDynamicMesh = true;
         
         itemsMesh = new ItemMesh[sectionCount];
 
@@ -48,7 +48,7 @@ public class Pipe : TechnicalBlock
         base.Update(deltaTime);
         TransferUpdate(deltaTime);
     }
-    public override ItemMesh[] GetItemsMesh()
+    public override ItemMesh[] GetDynamicMesh()
     {
         UpdateItemsMesh();
         return itemsMesh;

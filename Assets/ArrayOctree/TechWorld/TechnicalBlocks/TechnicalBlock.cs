@@ -5,7 +5,7 @@ using UnityEngine;
 public class TechnicalBlock : IItemInput, IItemOutput
 {
     protected bool updatesNeighbours; // pass in neighbours if true
-    protected bool rendersItems;
+    protected bool rendersDynamicMesh;
     protected Matrix4x4 localTransform; // position is always 0,0,0
     public Vector3Int[] requestedNeighbours;
 
@@ -14,13 +14,13 @@ public class TechnicalBlock : IItemInput, IItemOutput
     public Vector3Int RightDirection { get { return ((Vector3)localTransform.GetColumn(0)).ToVector3Int(); } }
     public Vector3Int UpDirection { get { return ((Vector3)localTransform.GetColumn(1)).ToVector3Int(); } }
     public Vector3Int ForwardDirection { get { return ((Vector3)localTransform.GetColumn(2)).ToVector3Int(); } }
-    public bool RendersItems { get => rendersItems; }
+    public bool RendersItems { get => rendersDynamicMesh; }
 
 
     public TechnicalBlock(Quaternion rotation)
     {
         updatesNeighbours = false;
-        rendersItems = false;
+        rendersDynamicMesh = false;
         this.localTransform = Matrix4x4.Rotate(rotation);
     }
 
@@ -32,8 +32,13 @@ public class TechnicalBlock : IItemInput, IItemOutput
     {
 
     }
-    
-    public virtual ItemMesh[] GetItemsMesh()
+
+    public virtual ItemMesh[] GetStaticMesh()
+    {
+        return null;
+    }
+
+    public virtual ItemMesh[] GetDynamicMesh()
     {
         return null;
     }

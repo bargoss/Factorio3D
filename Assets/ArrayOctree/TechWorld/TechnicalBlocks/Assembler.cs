@@ -23,7 +23,7 @@ public class Assembler : TechnicalBlock
         inputIDs = new int[4];
         inputAmounts = new int[4];
 
-        rendersItems = true;
+        rendersDynamicMesh = true;
         gearsMesh = new ItemMesh[1];
         InitializeAnimatedParts();
     }
@@ -54,7 +54,7 @@ public class Assembler : TechnicalBlock
             }
         }
     }
-    public override ItemMesh[] GetItemsMesh()
+    public override ItemMesh[] GetDynamicMesh()
     {
         ItemMesh[] itemMesh = new ItemMesh[1];
         itemMesh[0].itemType = gearsMesh[0].itemType;
