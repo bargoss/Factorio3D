@@ -26,16 +26,16 @@ public class TechWorld // world + tech stuff
     {
         return world.GetVoxel(position);
     }
-    public void SetElement(Vector3 position, Block element, Quaternion rotation)
+    public void SetElement(Vector3 position, Block element)
     {
         // Call previous technicalBlock's OnDestroy
         Block previousElement = GetElement(position);
         if(previousElement.technicalBlock != null) { previousElement.technicalBlock.OnDestroy(); }
 
         // Create the new element
-        InitializeTechBlock(ref element, rotation);
         world.SetVoxel(position, element);
     }
+    /*
     public void SetElement(Vector3 position ,Quaternion rotation, Block element, TechnicalGoInfo technicalGoInfo)
     {
         // Call previous technicalBlock's OnDestroy
@@ -46,6 +46,7 @@ public class TechWorld // world + tech stuff
         InitializeGoConnection(position ,ref element, rotation, technicalGoInfo);
         world.SetVoxel(position, element);
     }
+    */
     public void SimulateWorld(float deltaTime)
     {
         ChunkLayer<Block> chunkLayer = world.mainLayer;
@@ -67,30 +68,5 @@ public class TechWorld // world + tech stuff
     {
         block.technicalBlock = new GoConnection(position.ToVector3Int() ,rotation,technicalGoInfo);
     }
-
-
-    void InitializeTechBlock(ref Block block, Quaternion rotation)
-    {
-        Item.TechBlockType techBlockType = items[block.blockType].techBlockType;
-        switch (techBlockType)
-        {
-            case Item.TechBlockType.NonTechnical:
-                break;
-            case Item.TechBlockType.Pipe:
-                block.technicalBlock = new Pipe(rotation);
-                break;
-            case Item.TechBlockType.Assembler:
-                block.technicalBlock = new Assembler();
-                break;
-            case Item.TechBlockType.PipeOutput:
-                block.technicalBlock = new PipeOutput(rotation);
-                break;
-            case Item.TechBlockType.Splitter:
-                block.technicalBlock = new Splitter(rotation);
-                break;
-            case Item.TechBlockType.PipeJunction:
-                block.technicalBlock = new PipeJunction(rotation);
-                break;
-        }
-    }
+    
 }
