@@ -18,7 +18,7 @@ public class TechWorldMono : MonoBehaviour
         world = new TechWorld(itemsContainer, chunkSettings, new Vector3Int(64, 16, 64));
         chunkSettings = world.chunkSettings;
 
-        chunkMesher = new TechWorldMesher(chunkSettings);
+        chunkMesher = new TechWorldMesher(chunkSettings,itemsContainer.models.Length);
         worldRenderer = new TechWorldRenderer(itemsContainer);
         
         print("Ready");

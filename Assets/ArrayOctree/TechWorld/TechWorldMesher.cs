@@ -6,15 +6,17 @@ public class TechWorldMesher
 {
     ChunkSettings chunkSettings;
     int chunkSL;
+    int modelTypeCount;
 
-    public TechWorldMesher(ChunkSettings chunkSettings)
+    public TechWorldMesher(ChunkSettings chunkSettings, int modelTypeCount)
     {
+        this.modelTypeCount = modelTypeCount;
         this.chunkSL = chunkSettings.ChunkSL;
         this.chunkSettings = chunkSettings;
     }
     public InstancedMeshInfo MeshChunkBlocks(Vector3Int chunkIndex, ChunkLayer<Block> chunkLayer)
     {
-        InstancedMeshInfo instancedMeshInfo = new InstancedMeshInfo();
+        InstancedMeshInfo instancedMeshInfo = new InstancedMeshInfo(modelTypeCount);
         Chunk<Block> chunk = chunkLayer.GetChunk(chunkIndex);
         Vector3 chunkStart = chunkIndex.Multiply(chunkSettings.ChunkWorldLen);
 
@@ -27,19 +29,7 @@ public class TechWorldMesher
                     Vector3Int indexInChunk = new Vector3Int(x, y, z);
                     Vector3 position = new Vector3(x, y, z) * chunkSettings.VoxelSize + chunkStart;
                     Block block = chunk.GetVoxel(indexInChunk);
-                    //int blockType = block.blockType;
 
-                    /*
-                    Quaternion rotation = Quaternion.identity;
-                    TechnicalBlock technicalBlock = block.technicalBlock;
-                    if(technicalBlock is GoConnection) { continue; }
-                    if(technicalBlock != null)
-                    {
-                        rotation = Quaternion.LookRotation(technicalBlock.ForwardDirection, technicalBlock.UpDirection);
-                    }
-                    Matrix4x4 transform = Matrix4x4.TRS(position, rotation, Vector3.one * chunkSettings.VoxelSize * 0.5f);
-                    instancedMeshInfo.types[blockType].AddTransform(transform);
-                    */
                     TechnicalBlock technicalBlock = block.technicalBlock;
                     if(technicalBlock != null)
                     {
@@ -55,7 +45,7 @@ public class TechWorldMesher
     */
     public InstancedMeshInfo MeshChunkItems(Vector3Int chunkIndex, ChunkLayer<Block> chunkLayer)
     {
-        InstancedMeshInfo instancedMeshInfo = new InstancedMeshInfo();
+        InstancedMeshInfo instancedMeshInfo = new InstancedMeshInfo(modelTypeCount);
         Chunk<Block> chunk = chunkLayer.GetChunk(chunkIndex);
         Vector3 chunkStart = chunkIndex.Multiply(chunkSettings.ChunkWorldLen);
 
@@ -93,11 +83,12 @@ public class TechWorldMesher
 
 public class InstancedMeshInfo
 {
-    readonly static int typeCount = 9;
+    int typeCount;
     public InstancedMeshInfoType[] types; // type 0 is air, always empty
     //public InstanceMeshInfoType[] itemTypes;// later
-    public InstancedMeshInfo()
+    public InstancedMeshInfo(int typeCount)
     {
+        this.typeCount = typeCount;
         types = new InstancedMeshInfoType[typeCount];
         for(int i = 0; i < typeCount; i++)
         {
