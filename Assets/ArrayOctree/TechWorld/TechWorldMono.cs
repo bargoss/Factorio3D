@@ -18,7 +18,7 @@ public class TechWorldMono : MonoBehaviour
         world = new TechWorld(itemsContainer, chunkSettings, new Vector3Int(64, 16, 64));
         chunkSettings = world.chunkSettings;
 
-        chunkMesher = new TechWorldMesher(chunkSettings);
+        chunkMesher = new TechWorldMesher(chunkSettings,itemsContainer.models.Length);
         worldRenderer = new TechWorldRenderer(itemsContainer);
         
         print("Ready");
@@ -33,16 +33,18 @@ public class TechWorldMono : MonoBehaviour
         world.SimulateWorld(Time.fixedDeltaTime);
     }
 
-    public void SetElement(Vector3 position, Block block, Quaternion rotation) 
+    public void SetElement(Vector3 position, Block block) 
     {
-        world.SetElement(position, block, rotation);
+        world.SetElement(position, block);
         MeshAllChunks_Blocks();
     }
+    /*
     public void SetElement(Vector3 position, Quaternion rotation, Block block, TechnicalGoInfo technicalGoInfo)
     {
         world.SetElement(position, rotation ,block, technicalGoInfo);
         MeshAllChunks_Blocks();
     }
+    */
     public Block GetElement(Vector3 position)
     {
         return world.GetElement(position);

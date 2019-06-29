@@ -27,8 +27,11 @@ public class TechBlocksTests : MonoBehaviour
             //MeshItems();
             if (true)
             {
-                foreach (Pipe spawner in spawners)
+                Block block = techWorldMono.GetElement(Vector3.one * 1.5f + Vector3.up * 0);
+                
+                if (block.technicalBlock is Pipe)
                 {
+                    TechnicalBlock spawner = block.technicalBlock;
                     if (spawner.CanTake(1, spawner.ForwardDirection))
                     {
                         if (a)
@@ -60,7 +63,7 @@ public class TechBlocksTests : MonoBehaviour
     */
     void ConveyorTests()
     {
-        SplittingTest();
+        //SplittingTest();
         //ConveyorTest(1.1f, 1.1f, true);
         return;
 
@@ -137,7 +140,7 @@ public class TechBlocksTests : MonoBehaviour
                 Vector3 position = new Vector3(6.1f, 2f + y, z);
                 Block turretBlock = new Block();
                 turretBlock.blockType = 255;
-                techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
+                //techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
             }
         }
         {
@@ -152,7 +155,7 @@ public class TechBlocksTests : MonoBehaviour
                 Vector3 position = new Vector3(8.1f, 1f + y, z);
                 Block turretBlock = new Block();
                 turretBlock.blockType = 255;
-                techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
+                //techWorldMono.SetElement(position, Quaternion.identity, turretBlock, turretInfo);
             }
         }
         /*
@@ -181,7 +184,7 @@ public class TechBlocksTests : MonoBehaviour
     {
         Block block = new Block();
         block.blockType = blockType;
-        techWorldMono.SetElement(position, block, Quaternion.LookRotation(lookDirection, upDirection));
+        //techWorldMono.SetElement(position, block, Quaternion.LookRotation(lookDirection, upDirection));
         return techWorldMono.GetElement(position);
     }
     void MeshWorld()

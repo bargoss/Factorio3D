@@ -30,8 +30,9 @@ public class Pipe : TechnicalBlock
 
         itemsMesh = new ModelInfo[sectionCount];
 
-        requestedNeighbours = new Vector3Int[1];
+        requestedNeighbours = new Vector3Int[2];
         requestedNeighbours[0] = ForwardDirection;
+        requestedNeighbours[1] = ForwardDirection.Multiply(-1);
 
         lastSection = sectionCount - 1;
         sectionStart = -(Vector3)ForwardDirection * 0.5f;
@@ -80,6 +81,10 @@ public class Pipe : TechnicalBlock
         {
             TechnicalBlock target = neighbours[0];
             TryTransfer(this, target, ForwardDirection);
+            if (neighbours[1] is Pipe == false) // behaves like output pipe in condition
+            {
+                TryTransfer(neighbours[1], this, ForwardDirection);
+            }
         }
     }
 

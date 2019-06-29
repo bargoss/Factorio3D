@@ -106,12 +106,36 @@ public class BuildController : MonoBehaviour
     public void SetBlock(Vector3 position, Quaternion rotation, int blockType)
     {
         Block block = GenerateBlock(blockType);
-        techWorldMono.SetElement(position, block, rotation);
+        techWorldMono.SetElement(position, block);
     }
     Block GenerateBlock(int blockType)
     {
         Block block = new Block();
-        block.blockType = (byte)blockType;
+        //block.blockType = (byte)blockType;
+        InitializeTechBlock(ref block, rotations[targetRotationIndex], itemsContainer.items[blockType].techBlockType);
+
         return block;
     }
+    void InitializeTechBlock(ref Block block, Quaternion rotation, Item.TechBlockType techBlockType)
+    {
+        switch (techBlockType)
+        {
+            case Item.TechBlockType.NonTechnical:
+                break;
+            case Item.TechBlockType.Pipe:
+                block.technicalBlock = new Pipe(rotation);
+                break;
+            case Item.TechBlockType.Assembler:
+                block.technicalBlock = new Assembler();
+                break;
+            case Item.TechBlockType.Splitter:
+                block.technicalBlock = new Splitter(rotation);
+                break;
+            case Item.TechBlockType.PipeJunction:
+                block.technicalBlock = new PipeJunction(rotation);
+                break;
+        }
+    }
+    /*
+     */
 }
