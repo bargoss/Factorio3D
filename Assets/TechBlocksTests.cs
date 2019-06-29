@@ -27,8 +27,11 @@ public class TechBlocksTests : MonoBehaviour
             //MeshItems();
             if (true)
             {
-                foreach (Pipe spawner in spawners)
+                Block block = techWorldMono.GetElement(Vector3.one * 1.5f + Vector3.up * 0);
+                
+                if (block.technicalBlock is Pipe)
                 {
+                    TechnicalBlock spawner = block.technicalBlock;
                     if (spawner.CanTake(1, spawner.ForwardDirection))
                     {
                         if (a)

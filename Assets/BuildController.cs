@@ -128,9 +128,6 @@ public class BuildController : MonoBehaviour
             case Item.TechBlockType.Assembler:
                 block.technicalBlock = new Assembler();
                 break;
-            case Item.TechBlockType.PipeOutput:
-                block.technicalBlock = new PipeOutput(rotation);
-                break;
             case Item.TechBlockType.Splitter:
                 block.technicalBlock = new Splitter(rotation);
                 break;
